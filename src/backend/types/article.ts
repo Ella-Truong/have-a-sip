@@ -1,15 +1,38 @@
 import { Topic } from "./topic";
 
-export interface Article {
+export interface ArticleSummary {
     id: string;
     title: string;
     slug: string;
+    coverImage?: string | null;
+    readingTime: number;
+    published: boolean;
+    publishedAt: Date | null;
+    updatedAt: Date;
+    topic: Topic;
+}
+
+export interface ArticleDetail extends ArticleSummary {
+    content: string;
+}
+
+export interface CreateArticleInput {
+    title: string;
     excerpt: string;
     content: string;
     coverImage?: string;
+    topicId: string;
+}
+
+export interface CreateArticleData extends CreateArticleInput {
+    slug: string;
     readingTime: number;
-    published: boolean;
-    publishedAt: Date;
-    updatedAt: Date;
-    topic: Topic;
+}
+export interface UpdateArticleInput {
+    title?: string;
+    excerpt?: string;
+    content?: string;
+    coverImage?: string;
+    topicId?: string;
+    published?: boolean;
 }

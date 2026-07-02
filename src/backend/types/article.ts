@@ -20,7 +20,7 @@ export interface CreateArticleInput {
     title: string;
     excerpt: string;
     content: string;
-    coverImage?: string;
+    coverImage?: string | null;
     topicId: string;
 }
 

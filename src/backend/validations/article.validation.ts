@@ -12,6 +12,8 @@ import { z } from "zod";
  * 3. Ensures values satisfy our constraints
  */
 
+
+//valiedate query parameters for GET /api/articles
 export const getArticlesSchema = z.object({
     page: z.coerce
         .number()
@@ -28,3 +30,75 @@ export const getArticlesSchema = z.object({
 })
 
 export type GetArticlesQuery = z.infer<typeof getArticlesSchema>;
+
+//validate the request body for POST /api/admin/articles
+export const createArticleSchema = z.object ({
+    title: z
+        .string()
+        .trim()
+        .min(1)
+        .max(200),
+    
+    excerpt: z
+        .string()
+        .trim()
+        .min(1)
+        .max(500),
+    
+    content: z
+        .string()
+        .trim()
+        .min(1),
+    
+    coverImage: z
+        .string()
+        .nullable()
+        .optional(),
+
+    topicId: z
+        .string()
+        .min(1)
+})
+
+export type CreateArticleBody = z.infer<typeof createArticleSchema>
+
+/**
+ * 
+ */
+export const updateArticleSchema = z.object ({
+    title: z
+        .string()
+        .trim()
+        .min(1)
+        .max(200)
+        .optional(),
+
+    excerpt: z
+        .string()
+        .trim()
+        .min(1)
+        .max(500)
+        .optional(),
+
+    content: z
+        .string()
+        .trim()
+        .min(1)
+        .optional(),
+
+    coverImage: z
+        .string()
+        .nullable()
+        .optional(),
+
+    topicId: z
+        .string()
+        .min(1)
+        .optional(),
+
+    published: z
+        .boolean()
+        .optional()
+})
+
+export type UpdateArticleBody = z.infer<typeof updateArticleSchema>

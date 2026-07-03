@@ -1,0 +1,108 @@
+/**
+ * Query published articles
+ * Apply pagination
+ * Return the articles
+ * Return the total number of matching articles
+ */
+
+import { prisma } from "@/lib/prisma";
+
+import {
+    ArticleSummary,
+    ArticleDetail,
+    CreateArticleData,
+    UpdateArticleInput,
+} from "@/backend/types/article"
+
+export class ArticleRepository {
+    /**
+     * Find published articles with pagination
+     */
+    async findArticles(
+        page: number,
+        limit: number
+    ): Promise<{
+        articles: ArticleSummary[];
+        totalItems: number;
+    }> {
+        const skip = (page-1)*limit;
+
+        const articles = await prisma.article.findMany({
+            where: {
+                published: true,
+            },
+            include: {
+                topic: true
+            },
+            orderBy: {
+                publishedAt: "desc"
+            },
+            skip,
+            take: limit,
+        })
+
+        //count all published articles
+        const totalItems = await prisma.article.count({
+            where: {
+                published: true
+            },
+        });
+
+        return {
+            articles,
+            totalItems,
+        };
+    }
+    
+    /**
+     * Find a published article by slug 
+     */
+    async findArticleBySlug(
+        slug: string,
+    ): Promise<ArticleDetail | null>{
+        return prisma.article.findFirst({
+            where: {
+                slug,
+                published: true
+            },
+            include: {
+                topic: true
+            }
+        })
+    }
+
+    /**
+     * Create new article
+     */
+    async createArticle(data: CreateArticleData){
+        return prisma.article.create({
+            data
+        });
+    }
+
+    /**
+     * Update an existing article
+     */
+    async updateArticle(
+        id: string,
+        input: UpdateArticleInput
+    ){
+        return prisma.article.update({
+            where: {
+                id,
+            },
+            data: input
+        })
+    }
+
+    /**
+     * Delete article
+     */
+    async deleteArticle(id: string){
+        return prisma.article.delete({
+            where:{
+                id,
+            }
+        })
+    }
+}

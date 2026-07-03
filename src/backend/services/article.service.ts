@@ -8,9 +8,10 @@
 import { GetArticlesQuery } from "../validations/article.validation";
 import { PaginatedResponse } from "../types/pagination";
 import { ArticleRepository } from "../repositories/article.repository";
-import { ArticleDetail, ArticleSummary, CreateArticleInput } from "../types/article";
+import { ArticleDetail, ArticleSummary, CreateArticleInput, UpdateArticleData, UpdateArticleInput } from "../types/article";
 
 export class ArticleService {
+    //property declaration
     private readonly articleRepository: ArticleRepository;
 
     constructor() {
@@ -77,6 +78,41 @@ export class ArticleService {
         slug: string
     ): Promise<ArticleDetail | null>{
         return this.articleRepository.findArticleBySlug(slug)
+    }
+
+    /**
+     * Get a specific article by ID (admin)
+     */
+    async getArticleById(
+        id: string
+    ): Promise<ArticleDetail | null>{
+        return this.articleRepository.findArticleById(id)
+    }
+
+    /**
+     * Update a specific article (admin)
+     */
+    async updateArticle(
+        id: string,
+        input: UpdateArticleInput,
+    ): Promise<ArticleDetail>{
+        const data: UpdateArticleData = { ...input};
+
+        if (input.title) {
+            data.slug = this.generateSlug(input.title);
+        }
+
+        if(input.content) {
+            data.readingTime = this.calculateReadingTime(input.content);
+        }
+
+        //if published for the first time
+        if (input.published === true){
+            data.publishedAt = new Date();
+        }
+
+        return this.articleRepository.updateArticle(id, data)
+        
     }
 
     /**

@@ -32,7 +32,13 @@ export interface UpdateArticleInput {
     title?: string;
     excerpt?: string;
     content?: string;
-    coverImage?: string;
+    coverImage?: string | null;
     topicId?: string;
     published?: boolean;
+}
+
+export interface UpdateArticleData extends UpdateArticleInput {
+    slug?: string;
+    readingTime?: number;
+    publishedAt?: Date | null;
 }

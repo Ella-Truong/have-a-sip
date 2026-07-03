@@ -11,7 +11,7 @@ import {
     ArticleSummary,
     ArticleDetail,
     CreateArticleData,
-    UpdateArticleInput,
+    UpdateArticleData,
 } from "@/backend/types/article"
 
 export class ArticleRepository {
@@ -72,6 +72,22 @@ export class ArticleRepository {
     }
 
     /**
+     * Find a published article by ID (admin role)
+     */
+    async findArticleById(
+        id: string
+    ): Promise<ArticleDetail | null>{
+        return prisma.article.findUnique({
+            where: {
+                id,
+            },
+            include: {
+                topic: true,
+            },
+        })
+    }
+
+    /**
      * Create new article
      */
     async createArticle(data: CreateArticleData){
@@ -85,13 +101,16 @@ export class ArticleRepository {
      */
     async updateArticle(
         id: string,
-        input: UpdateArticleInput
+        input: UpdateArticleData
     ){
         return prisma.article.update({
             where: {
                 id,
             },
-            data: input
+            data: input,
+            include: {
+                topic: true,
+            }
         })
     }
 

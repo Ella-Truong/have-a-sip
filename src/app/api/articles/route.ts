@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getArticlesSchema } from "@/backend/validations/article.validation";
+import { ArticleService } from "@/backend/services/article.service";
+
+//create an instance of ArticleService class
+const articleService = new ArticleService();
 
 export async function GET(request: NextRequest){
     //make request.url a URL object --> use URL attributes like searchParams, pathName, ...
@@ -11,6 +15,8 @@ export async function GET(request: NextRequest){
     }
 
     const validatedQuery = getArticlesSchema.parse(query)
+    const articles = await articleService.getArticles(validatedQuery)
 
-    return NextResponse.json(validatedQuery)
+    return NextResponse.json(articles)
 }
+

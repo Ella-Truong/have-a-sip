@@ -1,6 +1,6 @@
 /**
- * This route for admin role to get a specific article
- * and work on it, like mofidy, delete, update, ...
+ * This route for admin role to GET a specific article
+ * and work on it, like PATCH, DELETE,...
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -42,4 +42,20 @@ export async function PATCH(
     const article = await articleService.updateArticle(id, validatedBody);
 
     return NextResponse.json(article)
+}
+
+/**
+ * Delete or remove an artile
+ */
+export async function DELETE(
+    request: NextRequest,
+    {params}: RouteParams
+){
+    const {id} = await params;
+    
+    await articleService.deleteArticle(id);
+
+    return NextResponse.json({
+        message: "Article deleted successfully."
+    });
 }

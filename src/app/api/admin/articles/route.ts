@@ -11,6 +11,7 @@ const articleService = new ArticleService();
 export async function POST(request: NextRequest){
     const body = await request.json();
 
+    //this create type CreateArticleBody after validation
     const validatedBody = createArticleSchema.parse(body)
 
     const article = await articleService.createArticle(validatedBody);

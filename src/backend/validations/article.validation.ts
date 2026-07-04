@@ -60,6 +60,7 @@ export const createArticleSchema = z.object ({
         .min(1)
 })
 
+//create a TypeScript type from the Zod schema
 export type CreateArticleBody = z.infer<typeof createArticleSchema>
 
 /**

@@ -90,6 +90,21 @@ export class ArticleService {
     }
 
     /**
+     * Create article (admin)
+     */
+    async createArticle(input: CreateArticleInput){
+        const slug = this.generateSlug(input.title)
+        const readingTime = this.calculateReadingTime(input.content)
+
+        return this.articleRepository.createArticle({
+            ...input,
+            slug,
+            readingTime,
+        })
+    }
+
+
+    /**
      * Update a specific article (admin)
      */
     async updateArticle(
@@ -116,16 +131,11 @@ export class ArticleService {
     }
 
     /**
-     * Create article
+     * Delete or remove an article
      */
-    async createArticle(input: CreateArticleInput){
-        const slug = this.generateSlug(input.title)
-        const readingTime = this.calculateReadingTime(input.content)
-
-        return this.articleRepository.createArticle({
-            ...input,
-            slug,
-            readingTime,
-        })
+    async deleteArticle(
+        id: string 
+    ): Promise<void>{
+        await this.articleRepository.deleteArticle(id);
     }
 }

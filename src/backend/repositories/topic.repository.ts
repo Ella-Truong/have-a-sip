@@ -65,8 +65,8 @@ export class TopicRepository {
     /**
      * Admin deletes a topic 
      */
-    async deleteTopic(id: string){
-        return prisma.topic.delete({
+    async deleteTopic(id: string): Promise<void>{
+        await prisma.topic.delete({
             where: {
                 id,
             }

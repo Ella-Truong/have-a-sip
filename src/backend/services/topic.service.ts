@@ -2,12 +2,15 @@
  * 
  */
 import { TopicRepository } from "../repositories/topic.repository";
-import { Topic } from "../types/topic";
 import { 
+    Topic,
+    CreateTopicData,
     CreateTopicInput,
-    UpdateTopicInput
+    UpdateTopicInput,
+    UpdateTopicData,
  } from "../types/topic";
 
+import { generateSlug } from "@/lib/helper";
 
 
 export class TopicService{
@@ -33,7 +36,7 @@ export class TopicService{
         return this.topicRepository.findTopicById(id)
     }
 
-    
+
 
     /**
      * Create a topic
@@ -41,7 +44,33 @@ export class TopicService{
     async createTopic(
         input: CreateTopicInput
     ): Promise<Topic>{
-
+        const data: CreateTopicData = {
+            ...input,
+            slug: generateSlug(input.name)
+        }
+        return this.topicRepository.createTopic(data)
     }
 
+    /**
+     * Update a topic
+     */
+    async updateTopic(
+        id: string,
+        input: UpdateTopicInput
+    ): Promise<Topic>{
+        const data: UpdateTopicData = {...input}
+
+        if (input.name){
+            data.slug = generateSlug(input.name)
+        }
+
+        return this.topicRepository.updateTopic(id, data)
+    }
+
+    /**
+     * Delete a topic
+     */
+    async deleteTopic(id: string): Promise<void>{
+        await this.topicRepository.deleteTopic(id)
+    }
 }

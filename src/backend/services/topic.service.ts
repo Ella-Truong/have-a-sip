@@ -1,5 +1,5 @@
 /**
- * 
+ * Handles business logic for topics
  */
 import { TopicRepository } from "../repositories/topic.repository";
 import { 

@@ -13,8 +13,10 @@ export async function GET(request: NextRequest){
         page: searchParams.get("page"),
         limit: searchParams.get("limit"),
     }
-
+    
+    //validatedQuery: GetArticlesQuery
     const validatedQuery = getArticlesSchema.parse(query)
+    
     const articles = await articleService.getArticles(validatedQuery)
 
     return NextResponse.json(articles)

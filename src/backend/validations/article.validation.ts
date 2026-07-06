@@ -13,7 +13,7 @@ import { z } from "zod";
  */
 
 
-//valiedate query parameters for GET /api/articles
+//validate query parameters for GET /api/articles
 export const getArticlesSchema = z.object({
     page: z.coerce
         .number()
@@ -28,7 +28,7 @@ export const getArticlesSchema = z.object({
         .max(20)
         .default(10)
 })
-
+//after validating, create GetArticleQuery type
 export type GetArticlesQuery = z.infer<typeof getArticlesSchema>;
 
 //validate the request body for POST /api/admin/articles

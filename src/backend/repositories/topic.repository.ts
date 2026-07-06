@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import {
     CreateTopicData,
     Topic,
+    UpdateTopicData,
 } from "../types/topic"
 
 
@@ -47,8 +48,28 @@ export class TopicRepository {
     }
 
     /**
-     * 
+     * Admin updates an existing topic
      */
+    async updateTopic(
+        id: string,
+        data: UpdateTopicData
+    ): Promise<Topic>{
+        return prisma.topic.update({
+            where:{
+                id,
+            },
+            data
+        })
+    }
 
-
+    /**
+     * Admin deletes a topic 
+     */
+    async deleteTopic(id: string){
+        return prisma.topic.delete({
+            where: {
+                id,
+            }
+        })
+    }
 }

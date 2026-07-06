@@ -12,3 +12,10 @@ export interface CreateTopicData extends CreateTopicInput {
     slug: string;
 }
 
+export interface UpdateTopicInput {
+    name?: string;
+}
+
+export interface UpdateTopicData extends UpdateTopicInput {
+    slug?: string;
+}

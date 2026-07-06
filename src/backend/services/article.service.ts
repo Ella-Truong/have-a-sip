@@ -9,6 +9,11 @@ import { GetArticlesQuery } from "../validations/article.validation";
 import { PaginatedResponse } from "../types/pagination";
 import { ArticleRepository } from "../repositories/article.repository";
 import { ArticleDetail, ArticleSummary, CreateArticleInput, UpdateArticleData, UpdateArticleInput } from "../types/article";
+import {
+    generateSlug,
+    calculateReadingTime,
+    buildingPagination
+} from "@/lib/helper";
 
 export class ArticleService {
     //property declaration
@@ -30,44 +35,7 @@ export class ArticleService {
 
         return {
             data: articles,
-            pagination: this.buildingPagination(page, limit, totalItems)
-        }
-    }
-
-    /**
-     * Helper functions
-     * Generating slug
-     * Calculate reading time
-     */
-    private generateSlug(title: string): string {
-        return title
-            .toLowerCase()
-            .trim()
-            .replace(/[^\w\s-]/g,"")
-            .replace(/\s+/g, "-")
-    }
-
-    private calculateReadingTime(content: string): number {
-        const words = content.trim().split(/\s+/).length
-        const wordPerMinute = 200;
-
-        return Math.max(1, Math.ceil(words/wordPerMinute))
-    }
-
-    private buildingPagination(
-        page: number,
-        limit: number,
-        totalItems: number
-    ) {
-        const totalPages = Math.ceil(totalItems/limit);
-        
-        return {
-            page, 
-            limit, 
-            totalItems,
-            totalPages,
-            hasNextPage: page < totalPages,
-            hasPreviousPage: page > 1,
+            pagination: buildingPagination(page, limit, totalItems)
         }
     }
 
@@ -93,8 +61,8 @@ export class ArticleService {
      * Create article (admin)
      */
     async createArticle(input: CreateArticleInput){
-        const slug = this.generateSlug(input.title)
-        const readingTime = this.calculateReadingTime(input.content)
+        const slug = generateSlug(input.title)
+        const readingTime = calculateReadingTime(input.content)
 
         return this.articleRepository.createArticle({
             ...input,
@@ -114,11 +82,11 @@ export class ArticleService {
         const data: UpdateArticleData = { ...input};
 
         if (input.title) {
-            data.slug = this.generateSlug(input.title);
+            data.slug = generateSlug(input.title);
         }
 
         if(input.content) {
-            data.readingTime = this.calculateReadingTime(input.content);
+            data.readingTime = calculateReadingTime(input.content);
         }
 
         //if published for the first time

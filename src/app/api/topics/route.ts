@@ -1,6 +1,6 @@
 /**
  * Notes: not using NextRequest here
- * Because no query parameters, request body, and special headers
+ * Because no query parameters, request body, and special headers in request
  * So GET route doesn't need to inspect the request
  */
 

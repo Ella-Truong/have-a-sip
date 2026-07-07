@@ -11,8 +11,26 @@ import {
 
 export class TopicRepository {
     /**
-     * Public API
-     * Find all topics
+     * Find only published topics to return to readers
+     */
+    async findPublishedTopic(): Promise<Topic[]>{
+        return prisma.topic.findMany({
+            where:{
+                articles:{
+                    some: {
+                        published: true,
+                    }
+                }
+            },
+            orderBy: {
+                name: "asc"
+            }
+        })
+    }
+
+
+    /**
+     * Admin finds all topics
      */
     async findTopics(): Promise<Topic[]>{
         return await prisma.topic.findMany({
@@ -23,7 +41,7 @@ export class TopicRepository {
     }
 
     /**
-     * Find topic by id
+     * Admin finds topic by id
      */
     async findTopicById(
         id: string

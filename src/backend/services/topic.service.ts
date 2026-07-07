@@ -20,12 +20,21 @@ export class TopicService{
         this.topicRepository = new TopicRepository();
     }
 
+     /**
+     * Get only published topics for reader side
+     */
+    async getPublishedTopic(){
+        return this.topicRepository.findPublishedTopic();
+    }
+
+
     /**
      * Get all topics
      */
     async getTopics(): Promise<Topic[]>{
         return this.topicRepository.findTopics()
     }
+
 
     /**
      * Get a topic by ID

@@ -11,11 +11,21 @@ export async function GET(){
 }
 
 export async function POST(request: NextRequest){
-    const body = await request.json();
+    try {
+        const body = await request.json();
 
-    const input = createTopicSchema.parse(body);
+        const input = createTopicSchema.parse(body);
 
-    const topic = await topicService.createTopic(input);
+        const topic = await topicService.createTopic(input);
+        
+        return NextResponse.json(topic, {status: 201})
 
-    return NextResponse.json(topic, {status: 201})
+    }catch(error){
+        console.log(error)
+
+        return NextResponse.json(
+            {message: "Something went wrong"},
+            {status: 500}
+        )
+    }
 }

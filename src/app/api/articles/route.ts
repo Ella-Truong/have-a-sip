@@ -10,8 +10,8 @@ export async function GET(request: NextRequest){
     const { searchParams } = new URL(request.url);
 
     const query = {
-        page: searchParams.get("page"),
-        limit: searchParams.get("limit"),
+        page: searchParams.get("page") ?? undefined,
+        limit: searchParams.get("limit") ?? undefined,
     }
     
     //validatedQuery: GetArticlesQuery

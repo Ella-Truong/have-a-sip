@@ -1,7 +1,19 @@
 export interface Comment {
+    id: string;
     cupName: string;
     content: string;
-    createdAt: string;
+    createdAt: Date;
     articleId: string;
-    id: string;
 }
+
+export interface CreateCommentInput {
+    cupName: string;
+    content: string;
+    articleId: string;
+}
+
+
+export interface UpdateCommentInput {
+    content: string;
+}
+

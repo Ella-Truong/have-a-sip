@@ -49,8 +49,8 @@ model Topic {
 
 model Comment {
   id         String    @id @default(cuid())
+  cupName    String
 
-  author     String
   content    String    @db.Text
 
   createdAt  DateTime  @default(now())

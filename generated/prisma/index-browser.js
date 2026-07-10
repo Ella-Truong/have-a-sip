@@ -143,7 +143,7 @@ exports.Prisma.TopicScalarFieldEnum = {
 
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
-  author: 'author',
+  cupName: 'cupName',
   content: 'content',
   createdAt: 'createdAt',
   articleId: 'articleId'

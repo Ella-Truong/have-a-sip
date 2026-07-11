@@ -8,7 +8,7 @@ import {
 
 export class CommentRepository {
     /**
-     * find comments
+     * find comments from multiple different params (articleId, cupName)
      */
     async findComments(
         query: GetCommentQuery
@@ -20,6 +20,15 @@ export class CommentRepository {
             },
             orderBy: {
                 createdAt: "asc"
+            },
+            include: {
+                article: {
+                    select: {
+                        id: true,
+                        title: true,
+                        slug: true
+                    }
+                }
             }
         })
     }

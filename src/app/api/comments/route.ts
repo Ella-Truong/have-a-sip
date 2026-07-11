@@ -3,7 +3,7 @@ import { CommentService } from "@/backend/services/comment.service";
 
 import {
     createCommentSchema,
-    getArticleCommentSchema,
+    getArticleCommentsSchema,
 } from "@/backend/validations/comment.validation"
 
 const commentService = new CommentService()
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
             articleId: searchParams.get("articleId")
         }
 
-        const validatedQuery = getArticleCommentSchema.parse(query)
+        const validatedQuery = getArticleCommentsSchema.parse(query)
 
         const comments = await commentService.getCommentsByArticleId(
             validatedQuery.articleId

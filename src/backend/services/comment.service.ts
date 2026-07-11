@@ -16,7 +16,7 @@ export class CommentService {
 
     /**
      * get comments
-     */
+     */ 
     async getComments(
         articleId: string
     ): Promise<Comment[]>{
@@ -43,7 +43,7 @@ export class CommentService {
     }
 
     /**
-     * delete a comment
+     * delete a comment (admin)
      */
     async deleteComment(
         id: string

@@ -27,3 +27,8 @@ export const updateCommentSchema = z.object({
         .max(1000, "Comment cannot exceed 1000 characters.")
 })
 export type UpdateCommentBody = z.infer<typeof updateCommentSchema>
+
+
+export const getCommentSchema = z.object ({
+    articleId: z.string().min(1),
+})

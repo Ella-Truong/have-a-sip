@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-
+import { GetCommentQuery } from "../validations/comment.validation";
 import {
     Comment, 
     CreateCommentInput,
@@ -7,6 +7,24 @@ import {
 } from "@/backend/types/comment"
 
 export class CommentRepository {
+    /**
+     * find comments
+     */
+    async findComments(
+        query: GetCommentQuery
+    ): Promise<Comment[]>{
+        return prisma.comment.findMany({
+            where: {
+                articleId: query.articleId,
+                cupName: query.cupName,
+            },
+            orderBy: {
+                createdAt: "asc"
+            }
+        })
+    }
+
+
     /**
      * find comments by article ID
      */

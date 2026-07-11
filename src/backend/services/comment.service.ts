@@ -3,6 +3,7 @@ import { Comment } from "@/backend/types/comment";
 import {
     CreateCommentBody,
     UpdateCommentBody,
+    GetCommentQuery,
 } from "@/backend/validations/comment.validation"
 
 
@@ -15,9 +16,19 @@ export class CommentService {
     }
 
     /**
-     * get comments
-     */ 
+     * get comments by ID or by cupName (admin)
+     */
     async getComments(
+        query: GetCommentQuery
+    ): Promise<Comment[]>{
+        return this.commentRepository.findComments(query)
+    }
+
+
+    /**
+     * get comments by Id (readers)
+     */ 
+    async getCommentsByArticleId(
         articleId: string
     ): Promise<Comment[]>{
         return this.commentRepository.findCommentsByArticleId(articleId)

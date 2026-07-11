@@ -29,6 +29,12 @@ export const updateCommentSchema = z.object({
 export type UpdateCommentBody = z.infer<typeof updateCommentSchema>
 
 
-export const getCommentSchema = z.object ({
-    articleId: z.string().min(1),
+export const getArticleCommentSchema = z.object({
+    articleId: z.string().min(1)
 })
+
+export const getCommentSchema = z.object ({
+    articleId: z.string().optional(),
+    cupName: z.string().trim().optional(),
+})
+export type GetCommentQuery = z.infer<typeof getCommentSchema>

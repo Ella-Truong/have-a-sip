@@ -88,4 +88,8 @@ export class CommentRepository {
             }
         })
     }
+
+    /**
+     * delete all comments or close 
+     */
 }

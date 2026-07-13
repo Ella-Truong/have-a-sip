@@ -125,3 +125,15 @@ src/
 ├── constants/
 └── prisma/
 ```
+
+## Engineering Notes
+
+While building Have a Sip, I documented the architectural decisions and concepts I learned, including:
+
+- Database environments (development, testing, production)
+- Prisma migrations
+- Integration testing strategy
+- Deployment workflow
+
+
+See the `docs/` folder for detailed notes.

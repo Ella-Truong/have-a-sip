@@ -10,9 +10,25 @@ export async function GET(
     request: NextRequest,
     {params}: RouteParams
 ){
-    const {slug} = await params;
+    try{
+        const {slug} = await params;
 
-    const article = await articleService.getArticleBySlug(slug);
+        const article = await articleService.getArticleBySlug(slug);
 
-    return NextResponse.json(article)
+        return NextResponse.json(article, { status: 200 })
+    }catch(error){
+        if (error instanceof Error && error.message === "Article not found") {
+            return NextResponse.json(
+                { message: "Artile not found"},
+                { status: 404 }
+            )
+        }
+
+        console.error(error);
+
+        return NextResponse.json(
+            { message: "Internal Server Error"},
+            { status: 500 }
+        )
+    }
 }

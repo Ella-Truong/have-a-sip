@@ -63,7 +63,6 @@ describe("GET api/articles", async () => {
             excerpt: redisArticleFixture.excerpt,
         });
 
-
         // verify pagination
         expect(result.pagination).toEqual({
             page: 1,

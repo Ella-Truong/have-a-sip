@@ -87,6 +87,8 @@ export class ArticleService {
         id: string,
         input: UpdateArticleInput,
     ): Promise<ArticleDetail>{
+        const article = await this.articleRepository.findArticleById(id);
+
         const data: UpdateArticleData = { ...input};
 
         if (input.title) {
@@ -98,7 +100,7 @@ export class ArticleService {
         }
 
         //if published for the first time
-        if (input.published === true){
+        if (input.published === true && !article?.published){
             data.publishedAt = new Date();
         }
 

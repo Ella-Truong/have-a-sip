@@ -5,16 +5,35 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ArticleService } from "@/backend/services/article.service";
 import { createArticleSchema } from "@/backend/validations/article.validation";
+import { ZodError, flattenError } from "zod";
 
 const articleService = new ArticleService();
 
 export async function POST(request: NextRequest){
-    const body = await request.json();
+    try{
+        const body = await request.json();
 
-    //this create type CreateArticleBody after validation
-    const validatedBody = createArticleSchema.parse(body)
+        //this create type CreateArticleBody after validation
+        const validatedBody = createArticleSchema.parse(body)
 
-    const article = await articleService.createArticle(validatedBody);
+        const article = await articleService.createArticle(validatedBody);
 
-    return NextResponse.json(article, { status: 201})
+        return NextResponse.json(article, { status: 201})
+    }catch(error){
+        if (error instanceof ZodError) {
+            return NextResponse.json(
+                { 
+                    message: "Validation failed",
+                    errors: flattenError(error),
+                },
+                { status: 400}
+            )
+        }
+
+        console.log(error)
+        return NextResponse.json(
+            { message: "Internal Server Error" },
+            { status: 500 }
+        )
+    }
 }

@@ -8,7 +8,15 @@
 import { GetArticlesQuery } from "../validations/article.validation";
 import { PaginatedResponse } from "../types/pagination";
 import { ArticleRepository } from "../repositories/article.repository";
-import { ArticleDetail, ArticleSummary, CreateArticleInput, UpdateArticleData, UpdateArticleInput } from "../types/article";
+
+import { 
+    ArticleDetail, 
+    ArticleSummary, 
+    CreateArticleInput, 
+    UpdateArticleData, 
+    UpdateArticleInput 
+} from "../types/article";
+
 import {
     generateSlug,
     calculateReadingTime,
@@ -79,6 +87,8 @@ export class ArticleService {
         id: string,
         input: UpdateArticleInput,
     ): Promise<ArticleDetail>{
+        const article = await this.articleRepository.findArticleById(id);
+
         const data: UpdateArticleData = { ...input};
 
         if (input.title) {
@@ -90,7 +100,7 @@ export class ArticleService {
         }
 
         //if published for the first time
-        if (input.published === true){
+        if (input.published === true && !article?.published){
             data.publishedAt = new Date();
         }
 

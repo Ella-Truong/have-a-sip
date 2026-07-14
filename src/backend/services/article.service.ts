@@ -8,7 +8,15 @@
 import { GetArticlesQuery } from "../validations/article.validation";
 import { PaginatedResponse } from "../types/pagination";
 import { ArticleRepository } from "../repositories/article.repository";
-import { ArticleDetail, ArticleSummary, CreateArticleInput, UpdateArticleData, UpdateArticleInput } from "../types/article";
+
+import { 
+    ArticleDetail, 
+    ArticleSummary, 
+    CreateArticleInput, 
+    UpdateArticleData, 
+    UpdateArticleInput 
+} from "../types/article";
+
 import {
     generateSlug,
     calculateReadingTime,

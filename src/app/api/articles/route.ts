@@ -1,24 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getArticlesSchema } from "@/backend/validations/article.validation";
 import { ArticleService } from "@/backend/services/article.service";
+import { ZodError } from "zod";
 
 //create an instance of ArticleService class
 const articleService = new ArticleService();
 
 export async function GET(request: NextRequest){
-    //make request.url a URL object --> use URL attributes like searchParams, pathName, ...
-    const { searchParams } = new URL(request.url);
+    try {
+        //make request.url a URL object --> use URL attributes like searchParams, pathName, ...
+        const { searchParams } = new URL(request.url);
 
-    const query = {
-        page: searchParams.get("page") ?? undefined,
-        limit: searchParams.get("limit") ?? undefined,
+        const query = {
+            page: searchParams.get("page") ?? undefined,
+            limit: searchParams.get("limit") ?? undefined,
+        }
+    
+        //validatedQuery: GetArticlesQuery
+        const validatedQuery = getArticlesSchema.parse(query)
+    
+        const articles = await articleService.getArticles(validatedQuery)
+
+        return NextResponse.json(articles, { status: 200})
+    }catch(error){
+        if (error instanceof ZodError){
+            return NextResponse.json(
+                {
+                    message: "Invalid query parameters",
+                    errors: error.issues
+                },
+                { status: 400}
+            );
+        }
+
+        console.log(error)
+
+        return NextResponse.json(
+            { message: "Internal Server Error"},
+            { status: 500 }
+        );
     }
-    
-    //validatedQuery: GetArticlesQuery
-    const validatedQuery = getArticlesSchema.parse(query)
-    
-    const articles = await articleService.getArticles(validatedQuery)
-
-    return NextResponse.json(articles)
 }
-

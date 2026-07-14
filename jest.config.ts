@@ -1,4 +1,4 @@
-import nextJest from "next/jest";
+import nextJest from "next/jest.js";
 import type { Config } from "jest";
 
 const createJestConfig = nextJest({
@@ -12,6 +12,9 @@ const config: Config = {
     },
     testMatch: [
         "<rootDir>/tests/**/*.test.ts"
+    ],
+    setupFilesAfterEnv: [
+        "<rootDir>/tests/setup.ts"
     ]
 }
 

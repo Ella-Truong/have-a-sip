@@ -59,8 +59,8 @@ export class ArticleRepository {
      */
     async findArticleBySlug(
         slug: string,
-    ): Promise<ArticleDetail | null>{
-        return prisma.article.findFirst({
+    ): Promise<ArticleDetail>{
+        const article = await prisma.article.findFirst({
             where: {
                 slug,
                 published: true
@@ -69,6 +69,12 @@ export class ArticleRepository {
                 topic: true
             }
         })
+
+        if (!article){
+            throw new Error("Article not found")
+        }
+
+        return article;
     }
 
     /**
@@ -103,6 +109,16 @@ export class ArticleRepository {
         id: string,
         input: UpdateArticleData
     ){
+        const article = await prisma.article.findUnique({
+            where: {
+                id,
+            }
+        });
+
+        if (!article){
+            throw new Error("Article not found")
+        };
+        
         return prisma.article.update({
             where: {
                 id,
@@ -118,6 +134,17 @@ export class ArticleRepository {
      * Delete article
      */
     async deleteArticle(id: string){
+        const article = await prisma.article.findUnique({
+            where:{
+                id,
+            }
+
+        })
+
+        if (!article) {
+            throw new Error("Article not found")
+        }
+
         return prisma.article.delete({
             where:{
                 id,

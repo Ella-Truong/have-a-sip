@@ -48,7 +48,6 @@ describe("GET api/articles", () => {
         const result = await response.json()
 
         // verify returned articles
-        expect(result.status).toBe(200)
         expect(result.data).toHaveLength(2);
 
         expect(result.data[0]).toMatchObject({

@@ -104,6 +104,6 @@ describe("GET api/articles/[slug]",() => {
 
         const result = await response.json();
 
-        expect(result.message).toBe("Article not published")
+        expect(result.message).toBe("Article not found")
     })
 })

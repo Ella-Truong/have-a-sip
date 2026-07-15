@@ -1,7 +1,7 @@
 import { CreateArticleInput } from "@/backend/types/article";
 
 export const prismaArticleFixture: CreateArticleInput = {
-    title: " Learning Prisma",
+    title: "Learning Prisma",
     excerpt: "A beginner's guide to Prisma ORM",
     content: "Prisma is a modern ORM for Node.js and TypeScript. It provides type-safe database access and excellent developer experience.",
     coverImage: null,

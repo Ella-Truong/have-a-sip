@@ -32,9 +32,7 @@ export async function GET(request: NextRequest){
                 { status: 400}
             );
         }
-
-        console.log(error)
-
+        
         return NextResponse.json(
             { message: "Internal Server Error"},
             { status: 500 }

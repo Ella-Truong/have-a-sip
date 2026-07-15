@@ -35,8 +35,6 @@ export async function GET(
             )
         };
 
-        console.error(error);
-
         return NextResponse.json(
             { message: "Internal Server Error" },
             { status: 500 }
@@ -76,8 +74,6 @@ export async function PATCH(
             )
         }
 
-        console.error(error);
-
         return NextResponse.json(
             { messsage: "Internal Server Error" },
             { status: 500 }
@@ -108,8 +104,6 @@ export async function DELETE(
                 { status: 404}
             )
         }
-
-        console.error(error);
 
         return NextResponse.json(
             { message: "Internal Server Error" },

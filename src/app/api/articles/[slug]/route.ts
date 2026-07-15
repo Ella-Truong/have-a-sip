@@ -19,12 +19,10 @@ export async function GET(
     }catch(error){
         if (error instanceof Error && error.message === "Article not found") {
             return NextResponse.json(
-                { message: "Artile not found"},
+                { message: "Article not found"},
                 { status: 404 }
             )
         }
-
-        console.error(error);
 
         return NextResponse.json(
             { message: "Internal Server Error"},

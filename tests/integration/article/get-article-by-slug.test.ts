@@ -11,7 +11,7 @@ import {
 } from "../../fixtures/article.fixture";
 
 //test suite
-describe("GET api/articles/[slug]", async () => {
+describe("GET api/articles/[slug]",() => {
     //test #1
     it("should return an aticle by slug", async () => {
         //arrange

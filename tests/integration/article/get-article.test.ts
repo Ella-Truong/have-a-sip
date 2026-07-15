@@ -11,7 +11,7 @@ import {
 } from "../../fixtures/article.fixture"
 
 
-describe("GET api/articles", async () => {
+describe("GET api/articles", () => {
     // test #1
     it("should return all published articles", async () => {
         // Arrange

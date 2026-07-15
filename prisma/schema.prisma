@@ -14,47 +14,109 @@ datasource db {
 
 //models are creating tables in SQL
 model Article {
-  id           String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  title        String
-  slug         String   @unique
+  title String
+  slug  String @unique
 
-  excerpt      String
-  content      String   @db.Text
+  excerpt String
+  content String @db.Text
 
-  coverImage   String?
+  coverImage String?
 
-  readingTime  Int
+  readingTime Int
 
-  published    Boolean  @default(false)
+  published Boolean @default(false)
 
-  publishedAt  DateTime?
-  updatedAt    DateTime @updatedAt
-  createdAt    DateTime @default(now())
+  publishedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
 
-  topicId      String
-  topic         Topic    @relation(fields: [topicId], references: [id])
+  topicId String
+  topic   Topic  @relation(fields: [topicId], references: [id])
 
-  comments     Comment[]
+  comments Comment[]
 }
 
 model Topic {
-  id        String    @id @default(cuid())
+  id String @id @default(cuid())
 
-  name      String    @unique
-  slug      String    @unique
+  name String @unique
+  slug String @unique
 
-  articles  Article[]
+  articles Article[]
 }
 
 model Comment {
-  id         String    @id @default(cuid())
-  cupName    String
+  id      String @id @default(cuid())
+  cupName String
 
-  content    String    @db.Text
+  content String @db.Text
 
-  createdAt  DateTime  @default(now())
+  createdAt DateTime @default(now())
 
-  articleId  String
-  article    Article   @relation(fields: [articleId], references: [id])
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id])
+}
+
+model User {
+  id String @id @default(cuid())
+
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+
+  password String
+
+  image String?
+
+  role Role @default(ADMIN)
+
+  accounts Account[]
+  sessions Session[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+
+  refresh_token String?
+  access_token  String?
+  expires_at    Int?
+  token_type    String?
+  scope         String?
+  id_token      String?
+  session_state String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String @unique
+
+  userId  String
+  expires DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([sessionToken])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@id([identifier, token])
 }

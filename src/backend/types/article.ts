@@ -4,6 +4,7 @@ export interface ArticleSummary {
     id: string;
     title: string;
     slug: string;
+    excerpt: string | null;
     coverImage?: string | null;
     readingTime: number;
     published: boolean;
@@ -42,3 +43,4 @@ export interface UpdateArticleData extends UpdateArticleInput {
     readingTime?: number;
     publishedAt?: Date | null;
 }
+

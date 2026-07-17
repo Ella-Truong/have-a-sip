@@ -57,7 +57,10 @@ export const createArticleSchema = z.object ({
 
     topicId: z
         .string()
-        .min(1)
+        .min(1),
+    published: z
+        .boolean()
+        .optional(),
 })
 
 //create a TypeScript type from the Zod schema

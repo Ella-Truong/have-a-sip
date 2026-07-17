@@ -1,24 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
-interface Topic {
-    id: string;
-    name: string;
-}
-
+import { Topic } from "@/backend/types/topic";
+import { ArticleFormData } from "@/backend/types/article";
 interface ArticleFormProps {
-    article?: {
-        id: string;
-        title: string;
-        excerpt: string | null;
-        content: string;
-        published: boolean;
-        topicId: string;
-    };
-
+    article?: ArticleFormData
     topics: Topic[];
 }
 

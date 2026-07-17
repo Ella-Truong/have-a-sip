@@ -44,3 +44,7 @@ export interface UpdateArticleData extends UpdateArticleInput {
     publishedAt?: Date | null;
 }
 
+export interface ArticleFormData extends CreateArticleInput {
+    id: string;
+    published: boolean;
+}

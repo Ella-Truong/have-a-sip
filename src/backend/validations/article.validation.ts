@@ -12,7 +12,7 @@ import { z } from "zod";
  * 3. Ensures values satisfy our constraints
  */
 
-
+ 
 //validate query parameters for GET /api/articles
 export const getArticlesSchema = z.object({
     page: z.coerce

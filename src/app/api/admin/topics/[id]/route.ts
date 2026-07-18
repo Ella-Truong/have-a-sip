@@ -45,11 +45,35 @@ export async function DELETE(
     request: NextRequest,
     { params }: RouteParams
 ){
-    const {id} = await params;
+    try{
+        const {id} = await params;
 
-    await topicService.deleteTopic(id);
+        await topicService.deleteTopic(id);
 
-    return NextResponse.json({
-        message: "Topic is deleted successfully."
-    })
+        return NextResponse.json(
+            { message: "Topic is deleted sucessfully"},
+            { status: 200 }
+        )
+    }catch(error){
+        if (
+            error instanceof Error &&
+            error.message === "Topic not found"
+        ) {
+            return NextResponse.json(
+                {
+                    message: "Topic not found",
+                },
+                { status: 404 }
+            );
+        }
+
+        console.error(error);
+
+        return NextResponse.json(
+            {
+                message: "Internal Server Error",
+            },
+            { status: 500 }
+        );
+    }
 }

@@ -1,3 +1,9 @@
+/**
+ * Prepare the database by inserting initial data
+ * Create first admin account
+ * The blog is ready to use
+ */
+
 import bcrypt from "bcrypt";
 import { prisma } from "@/lib/prisma";
 
@@ -12,7 +18,7 @@ async function main() {
         create: {
             name: "Ella",
             email: process.env.ADMIN_EMAIL!,
-            password,
+            password, 
             role: "ADMIN",
         }
     });

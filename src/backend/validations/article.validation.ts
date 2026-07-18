@@ -12,7 +12,7 @@ import { z } from "zod";
  * 3. Ensures values satisfy our constraints
  */
 
-
+ 
 //validate query parameters for GET /api/articles
 export const getArticlesSchema = z.object({
     page: z.coerce
@@ -57,7 +57,10 @@ export const createArticleSchema = z.object ({
 
     topicId: z
         .string()
-        .min(1)
+        .min(1),
+    published: z
+        .boolean()
+        .default(false),
 })
 
 //create a TypeScript type from the Zod schema

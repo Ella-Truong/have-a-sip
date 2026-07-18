@@ -1,5 +1,6 @@
 import { TopicService } from "@/backend/services/topic.service";
 import CreateTopicForm from "@/components/admin/topics/CreateTopicForm";
+import DeleteTopicButton from "@/components/admin/topics/DeleteTopicButton";
 
 const topicService = new TopicService();
 
@@ -54,9 +55,7 @@ export default async function AdminTopicsPage() {
                                     </td>
 
                                     <td className="px-6 py-5">
-                                        <button className="text-sm font-medium text-[#C17C74] hover:text-[#A65F58]">
-                                            Delete
-                                        </button>
+                                        <DeleteTopicButton topicId={topic.id}/>
                                     </td>
                                 </tr>
                             ))}

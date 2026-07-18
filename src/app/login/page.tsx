@@ -1,7 +1,7 @@
 import { signIn } from "@/auth";
 
 export default function LoginPage() {
-    async function login(formData: FormData){
+    async function login(formData: FormData) {
         "use server";
 
         await signIn("credentials", {
@@ -12,33 +12,80 @@ export default function LoginPage() {
     }
 
     return (
-        <main className="max-w-md mx-auto mt-20">
-            <h1 className="text-2xl font-bold mb-6">
-                Admin Login
-            </h1>
+        <main className="flex min-h-screen items-center justify-center bg-[#FAF8F5] px-6">
+            <div className="w-full max-w-md">
+                {/* Header */}
+                <div className="mb-8 text-center">
+                    <div className="mb-3 text-3xl">
+                        ☕
+                    </div>
 
-            <form action={login} className="space-y-4">
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    className="border p-2 w-full"
-                />
+                    <h1 className="text-3xl font-semibold text-[#3F3A37]">
+                        Welcome back
+                    </h1>
 
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    className="border p-2 w-full"
-                />
+                    <p className="mt-2 text-sm text-[#817873]">
+                        Sign in to manage Have a Sip.
+                    </p>
+                </div>
 
-                <button
-                    type="submit"
-                    className="bg-black text-white px-4 py-2 rounded"
+                {/* Login Card */}
+                <form
+                    action={login}
+                    className="space-y-5 rounded-2xl border border-[#E7E0DA] bg-white p-8 shadow-sm"
                 >
-                    Sign In
-                </button>
-            </form>
+                    {/* Email */}
+                    <div>
+                        <label
+                            htmlFor="email"
+                            className="mb-2 block text-sm font-medium text-[#4F4945]"
+                        >
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            required
+                            placeholder="you@example.com"
+                            className="w-full rounded-xl border border-[#DDD5CE] bg-[#FCFBF9] px-4 py-3 text-[#3F3A37] outline-none transition placeholder:text-[#B5ACA5] focus:border-[#A8BCA0] focus:ring-2 focus:ring-[#E4EFE0]"
+                        />
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <label
+                            htmlFor="password"
+                            className="mb-2 block text-sm font-medium text-[#4F4945]"
+                        >
+                            Password
+                        </label>
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                            placeholder="Enter your password"
+                            className="w-full rounded-xl border border-[#DDD5CE] bg-[#FCFBF9] px-4 py-3 text-[#3F3A37] outline-none transition placeholder:text-[#B5ACA5] focus:border-[#A8BCA0] focus:ring-2 focus:ring-[#E4EFE0]"
+                        />
+                    </div>
+
+                    {/* Submit */}
+                    <button
+                        type="submit"
+                        className="w-full rounded-xl bg-[#B8C8B0] px-5 py-3 text-sm font-medium text-[#34402F] transition hover:bg-[#A8BCA0] focus:outline-none focus:ring-2 focus:ring-[#DDE8D8]"
+                    >
+                        Sign In
+                    </button>
+                </form>
+
+                {/* Footer */}
+                <p className="mt-6 text-center text-xs text-[#A09892]">
+                    A quiet corner for writing and learning.
+                </p>
+            </div>
         </main>
-    )
+    );
 }

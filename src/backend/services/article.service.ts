@@ -57,6 +57,14 @@ export class ArticleService {
     }
 
     /**
+     * Get all articles for admin
+     * Includes drafts and published articles
+     */
+    async getAdminArticles(): Promise<ArticleSummary[]>{
+        return this.articleRepository.findAllArticles();
+    }
+
+    /**
      * Get a specific article by ID (admin)
      */
     async getArticleById(

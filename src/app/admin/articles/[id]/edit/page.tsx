@@ -1,8 +1,11 @@
 import { notFound } from "next/navigation";
+
 import ArticleForm from "@/components/admin/articles/ArticleForm";
 import { ArticleService } from "@/backend/services/article.service";
+import { TopicService } from "@/backend/services/topic.service";
 
 const articleService = new ArticleService();
+const topicService = new TopicService();
 
 interface EditArticlePageProps {
     params: Promise<{
@@ -15,7 +18,10 @@ export default async function EditArticlePage({
 }: EditArticlePageProps) {
     const { id } = await params;
 
-    const article = await articleService.getArticleById(id);
+    const [article, topics] = await Promise.all([
+        articleService.getArticleById(id),
+        topicService.getTopics(),
+    ]);
 
     if (!article) {
         notFound();
@@ -34,7 +40,10 @@ export default async function EditArticlePage({
                     </p>
                 </div>
 
-                <ArticleForm article={article} />
+                <ArticleForm
+                    article={article}
+                    topics={topics}
+                />
             </div>
         </main>
     );

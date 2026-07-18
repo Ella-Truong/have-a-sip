@@ -53,6 +53,7 @@ export class ArticleRepository {
             totalItems,
         };
     }
+
     
     /**
      * Find a published article by slug 
@@ -75,6 +76,21 @@ export class ArticleRepository {
         }
 
         return article;
+    }
+
+    /**
+     * Find all articles for admin
+     * Including both published articles and drafts
+     */
+    async findAllArticles(): Promise<ArticleSummary[]>{
+        return prisma.article.findMany({
+            include:{
+                topic: true,
+            },
+            orderBy: {
+                updatedAt: "desc",
+            }
+        })
     }
 
     /**
@@ -138,7 +154,6 @@ export class ArticleRepository {
             where:{
                 id,
             }
-
         })
 
         if (!article) {

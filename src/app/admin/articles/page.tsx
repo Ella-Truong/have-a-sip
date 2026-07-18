@@ -5,10 +5,7 @@ import DeleteArticleButton from "@/components/admin/articles/DeleteArticleButton
 const articleService = new ArticleService();
 
 export default async function AdminArticlesPage() {
-    const result = await articleService.getArticles({
-        page: 1,
-        limit: 50,
-    });
+    const result = await articleService.getAdminArticles();
 
     return (
         <main className="min-h-screen bg-[#FAF8F5] px-6 py-10">
@@ -67,7 +64,7 @@ export default async function AdminArticlesPage() {
                         </thead>
 
                         <tbody className="divide-y divide-[#EEE8E3]">
-                            {result.data.map((article) => (
+                            {result.map((article) => (
                                 <tr
                                     key={article.id}
                                     className="
@@ -147,7 +144,7 @@ export default async function AdminArticlesPage() {
                     </table>
 
                     {/* Empty state */}
-                    {result.data.length === 0 && (
+                    {result.length === 0 && (
                         <div className="px-6 py-16 text-center">
                             <p className="text-sm text-[#817873]">
                                 No articles yet.

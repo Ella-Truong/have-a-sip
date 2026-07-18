@@ -16,14 +16,6 @@ export default function DeleteArticleButton({
     const [error, setError] = useState("");
 
     async function handleDelete() {
-        const confirmed = window.confirm(
-            "Are you sure you want to delete this article?"
-        );
-
-        if (!confirmed) {
-            return;
-        }
-
         setIsDeleting(true);
         setError("");
 

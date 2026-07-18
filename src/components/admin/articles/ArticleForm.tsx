@@ -5,7 +5,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Topic } from "@/backend/types/topic";
-import { ArticleFormData } from "@/backend/types/article";
+import { 
+    ArticleFormData,
+    CreateArticleInput,
+ } from "@/backend/types/article";
+
 interface ArticleFormProps {
     article?: ArticleFormData
     topics: Topic[];
@@ -65,19 +69,21 @@ export default function ArticleForm({
                 ? "PATCH"
                 : "POST";
 
+            const articleData: CreateArticleInput = {
+                title,
+                excerpt,
+                content,
+                topicId,
+                published,
+            }
+
             const response = await fetch(url, {
                 method,
                 headers: {
                     "Content-Type": "application/json",
                 },
 
-                body: JSON.stringify({
-                    title,
-                    excerpt,
-                    content,
-                    topicId,
-                    published,
-                }),
+                body: JSON.stringify(articleData),
             });
 
             if (!response.ok) {

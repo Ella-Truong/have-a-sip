@@ -11,6 +11,7 @@ export interface ArticleSummary {
     publishedAt: Date | null;
     updatedAt: Date;
     topic: Topic;
+    topicId: string;
 }
 
 export interface ArticleDetail extends ArticleSummary {
@@ -23,6 +24,7 @@ export interface CreateArticleInput {
     content: string;
     coverImage?: string | null;
     topicId: string;
+    published: boolean;
 }
 
 export interface CreateArticleData extends CreateArticleInput {
@@ -44,7 +46,7 @@ export interface UpdateArticleData extends UpdateArticleInput {
     publishedAt?: Date | null;
 }
 
-export interface ArticleFormData extends CreateArticleInput {
+export interface ArticleFormData extends Omit<CreateArticleInput, "excerpt"> {
     id: string;
-    published: boolean;
+    excerpt: string | null;
 }

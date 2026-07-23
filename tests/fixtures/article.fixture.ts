@@ -6,6 +6,7 @@ export const prismaArticleFixture: CreateArticleInput = {
     content: "Prisma is a modern ORM for Node.js and TypeScript. It provides type-safe database access and excellent developer experience.",
     coverImage: null,
     topicId: "", //override this inside each test
+    published: true
 }
 
 export const redisArticleFixture = {

@@ -5,6 +5,7 @@ import Image from "@tiptap/extension-image";
 
 import { TextStyle } from "@tiptap/extension-text-style";
 import { FontFamily } from "@tiptap/extension-font-family";
+import { Placeholder } from "@tiptap/extension-placeholder"
 
 export const editorExtensions = [
   StarterKit,
@@ -15,4 +16,7 @@ export const editorExtensions = [
     openOnClick: false,
   }),
   Image,
+  Placeholder.configure({
+    placeholder: "Start writing..."
+  })
 ];

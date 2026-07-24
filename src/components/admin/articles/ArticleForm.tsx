@@ -10,6 +10,7 @@ import {
     CreateArticleInput,
  } from "@/backend/types/article";
 
+import ContentEditor from "./ContentEditor";
 interface ArticleFormProps {
     article?: ArticleFormData
     topics: Topic[];
@@ -214,18 +215,10 @@ export default function ArticleForm({
                     >
                         Content
                     </label>
-
-                    <textarea
-                        id="content"
-                        value={content}
-                        onChange={(event) =>
-                            setContent(event.target.value)
-                        }
-                        required
-                        rows={14}
-                        placeholder="Start writing..."
-                        className="w-full rounded-xl border border-[#DDD5CE] bg-[#FCFBF9] px-4 py-3 leading-7 text-[#3F3A37] outline-none transition placeholder:text-[#B5ACA5] focus:border-[#A8BCA0] focus:ring-2 focus:ring-[#E4EFE0]"
-                    />
+                    <ContentEditor 
+                            value = {content}  
+                            onChange = {setContent}
+                        />
                 </div>
 
                 {/* Published */}

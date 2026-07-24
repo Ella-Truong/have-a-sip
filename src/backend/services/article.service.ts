@@ -9,6 +9,8 @@ import { GetArticlesQuery } from "../validations/article.validation";
 import { PaginatedResponse } from "../types/pagination";
 import { ArticleRepository } from "../repositories/article.repository";
 
+import { Article } from "@generated/prisma";
+
 import { 
     ArticleDetail, 
     ArticleSummary, 
@@ -22,6 +24,7 @@ import {
     calculateReadingTime,
     buildingPagination
 } from "@/lib/helper";
+
 
 export class ArticleService {
     //property declaration
@@ -121,7 +124,7 @@ export class ArticleService {
      */
     async deleteArticle(
         id: string 
-    ): Promise<void>{
-        await this.articleRepository.deleteArticle(id);
+    ): Promise<Article>{
+        return await this.articleRepository.deleteArticle(id);
     }
 }

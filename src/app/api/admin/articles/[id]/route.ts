@@ -10,6 +10,8 @@ import { ArticleService } from "@/backend/services/article.service";
 import { updateArticleSchema } from "@/backend/validations/article.validation";
 import { UpdateArticleInput } from "@/backend/types/article";
 
+import { revalidatePath } from "next/cache";
+
 const articleService = new ArticleService();
 
 interface RouteParams {params: Promise<{id: string}>}
@@ -58,6 +60,14 @@ export async function PATCH(
 
         const article = await articleService.updateArticle(id, validatedBody);
 
+        revalidatePath("/admin/articles");
+
+        if (article.published) {
+            revalidatePath("/");
+            revalidatePath("/sips");
+            revalidatePath(`/articles/${article.slug}`)
+        }
+
         return NextResponse.json(article, {status: 200})
     }catch(error){
         if (error instanceof ZodError){
@@ -91,7 +101,15 @@ export async function DELETE(
     try{
         const {id} = await params;
     
-        await articleService.deleteArticle(id);
+        const article = await articleService.deleteArticle(id);
+
+        revalidatePath("/admin/articles");
+
+        if (article.published){
+            revalidatePath("/");
+            revalidatePath("/sips");
+            revalidatePath(`/articles/${article.slug}`)
+        }
 
         return NextResponse.json(
             { message: "Article deleted successfully."},

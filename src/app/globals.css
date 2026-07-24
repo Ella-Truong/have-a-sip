@@ -39,7 +39,7 @@ body {
 }
 
 .tiptap p.is-editor-empty:first-child::before {
-  content: "Start writing...";
+  content: attr(data-placeholder);
   color: #b5aca5;
   pointer-events: none;
   float: left;

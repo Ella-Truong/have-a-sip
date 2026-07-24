@@ -11,6 +11,7 @@ import {
   Code,
   SquareCode,
   Link as LinkIcon,
+  Palette,
 } from "lucide-react";
 
 interface EditorToolbarProps {
@@ -158,6 +159,29 @@ export default function EditorToolbar({
       >
         <LinkIcon size={18} />
       </button>
+
+      {/* Text Color */}
+      <label
+        className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-md text-[#6B5F58] hover:bg-[#F4EFEA]"
+        aria-label="Text color"
+      >
+        <Palette size={18} />
+
+        <input
+          type="color"
+          className="absolute inset-0 cursor-pointer opacity-0"
+          value={
+            editor.getAttributes("textStyle").color || "#000000"
+          }
+          onChange={(e) =>
+            editor
+              .chain()
+              .focus()
+              .setColor(e.target.value)
+              .run()
+          }
+        />
+      </label>
     </div>
   );
 }

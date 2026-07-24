@@ -63,7 +63,7 @@ export default function EditorToolbar({
         )}
         aria-label="Heading 1"
       >
-        <Heading1 size={18} />
+        <Heading1 size={16} />
       </button>
 
       {/* Heading 2 */}
@@ -77,7 +77,7 @@ export default function EditorToolbar({
         )}
         aria-label="Heading 2"
       >
-        <Heading2 size={18} />
+        <Heading2 size={16} />
       </button>
 
       {/* Heading 3 */}
@@ -91,7 +91,7 @@ export default function EditorToolbar({
         )}
         aria-label="Heading 3"
       >
-        <Heading3 size={18} />
+        <Heading3 size={16} />
       </button>
 
       <div className="mx-1 h-6 w-px bg-[#DDD5CE]" />
@@ -103,7 +103,7 @@ export default function EditorToolbar({
         className={buttonClass(editor.isActive("bold"))}
         aria-label="Bold"
       >
-        <Bold size={18} />
+        <Bold size={16} />
       </button>
 
       {/* Italic */}
@@ -113,7 +113,7 @@ export default function EditorToolbar({
         className={buttonClass(editor.isActive("italic"))}
         aria-label="Italic"
       >
-        <Italic size={18} />
+        <Italic size={16} />
       </button>
 
       {/* Underline */}
@@ -145,7 +145,7 @@ export default function EditorToolbar({
         className={buttonClass(editor.isActive("codeBlock"))}
         aria-label="Code Block"
       >
-        <SquareCode size={18} />
+        <SquareCode size={16} />
       </button>
 
       <div className="mx-1 h-6 w-px bg-[#DDD5CE]" />
@@ -157,7 +157,7 @@ export default function EditorToolbar({
         className={buttonClass(editor.isActive("link"))}
         aria-label="Insert Link"
       >
-        <LinkIcon size={18} />
+        <LinkIcon size={16} />
       </button>
 
       {/* Text Color */}
@@ -165,7 +165,7 @@ export default function EditorToolbar({
         className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-md text-[#6B5F58] hover:bg-[#F4EFEA]"
         aria-label="Text color"
       >
-        <Palette size={18} />
+        <Palette size={16} />
 
         <input
           type="color"

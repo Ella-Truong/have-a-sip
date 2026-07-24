@@ -38,7 +38,7 @@ export default function ContentEditor ({
     return (
         <div>
             <EditorToolbar editor = {editor}/>
-            <EditorContent editor = {editor} className="min-h-[350px] px-4 py-3"/>
+            <EditorContent editor = {editor} className="min-h-[350px] px-4 py-3 leading-7 text-[#3F3A37] outline-none"/>
         </div> 
     )
 }

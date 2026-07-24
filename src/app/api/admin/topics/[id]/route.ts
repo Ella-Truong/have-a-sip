@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { TopicService } from "@/backend/services/topic.service";
 import { updateTopicSchema } from "@/backend/validations/topic.validation";
+import { revalidatePath } from "next/cache";
 
 const topicService = new TopicService();
 
@@ -49,6 +50,11 @@ export async function DELETE(
         const {id} = await params;
 
         await topicService.deleteTopic(id);
+
+        revalidatePath("/");
+        revalidatePath("/sips");
+        revalidatePath("/admin/topics");
+        revalidatePath("/admin/articles/new")
 
         return NextResponse.json(
             { message: "Topic is deleted sucessfully"},

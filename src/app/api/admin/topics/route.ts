@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { TopicService } from "@/backend/services/topic.service";
 import { createTopicSchema } from "@/backend/validations/topic.validation";
+import { revalidatePath } from "next/cache";
 
 const topicService = new TopicService;
 
@@ -17,6 +18,9 @@ export async function POST(request: NextRequest){
         const input = createTopicSchema.parse(body);
 
         const topic = await topicService.createTopic(input);
+        
+        revalidatePath("/")
+        revalidatePath("/sips")
         
         return NextResponse.json(topic, {status: 201})
 

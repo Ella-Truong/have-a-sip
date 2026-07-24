@@ -1,6 +1,8 @@
 "use client";
 
 import { Editor } from "@tiptap/react";
+import { ChangeEvent, useRef } from "react";
+
 import {
   Bold,
   Italic,
@@ -12,6 +14,7 @@ import {
   SquareCode,
   Link as LinkIcon,
   Palette,
+  Image as ImageIcon,
 } from "lucide-react";
 
 interface EditorToolbarProps {
@@ -21,6 +24,8 @@ interface EditorToolbarProps {
 export default function EditorToolbar({
   editor,
 }: EditorToolbarProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   if (!editor) return null;
 
   const buttonClass = (active: boolean) =>
@@ -49,6 +54,40 @@ export default function EditorToolbar({
       .setLink({ href: url })
       .run();
   };
+
+  const handleImageUpload = async (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    try {
+      const formData = new FormData();
+
+      formData.append("file", file);
+
+      const response = await fetch(
+        "/api/admin/uploads",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if( !response.ok) {
+        throw new Error("Failed to upload image.")
+      }
+
+      const image = await response.json();
+      
+      editor.chain().focus().setImage({ src: image.url, alt: file.name}).run();
+    }catch(error){
+      console.error(error)
+    }finally {
+      event.target.value = "";
+    }
+  }
 
   return (
     <div className="flex items-center gap-1 border-b border-[#DDD5CE] bg-[#FCFBF9] p-2">
@@ -182,6 +221,26 @@ export default function EditorToolbar({
           }
         />
       </label>
+
+      {/* Image */}
+      <button
+        type="button"
+        onClick={() =>
+          fileInputRef.current?.click()
+        }
+        className={buttonClass(false)}
+        aria-label="Insert Image"
+      >
+        <ImageIcon size={16} />
+      </button>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        hidden
+        onChange={handleImageUpload}
+      />
     </div>
   );
 }

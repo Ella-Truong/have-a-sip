@@ -19,6 +19,7 @@ export default async function HomePage() {
         }),
         topicService.getTopics(),
     ]);
+    console.log("Topics:", topics)
 
     return (
         <main>

@@ -20,5 +20,9 @@ export const editorExtensions = [
   Image,
   Placeholder.configure({
     placeholder: "Start writing..."
+  }),
+  Image.configure({
+    inline: false,
+    allowBase64: false
   })
 ];

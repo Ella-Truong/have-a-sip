@@ -21,6 +21,7 @@ export async function POST(request: NextRequest){
         
         revalidatePath("/")
         revalidatePath("/sips")
+        revalidatePath("/admin/topics")
         
         return NextResponse.json(topic, {status: 201})
 

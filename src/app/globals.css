@@ -45,3 +45,41 @@ body {
   float: left;
   height: 0;
 }
+
+
+/* globals.css */
+
+@keyframes sparkle {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: translateY(-6px) scale(1.15);
+    opacity: 1;
+  }
+}
+
+@theme {
+  --animate-sparkle: sparkle 4s ease-in-out infinite;
+}
+
+
+
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-8deg);
+  }
+
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+@theme {
+  --animate-sway: sway 4s ease-in-out infinite;
+}
+
+

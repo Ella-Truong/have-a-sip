@@ -12,14 +12,25 @@ export default function ReaderLayout({
             {/* Navigation */}
             {/* ========================= */}
             <header className="sticky top-0 z-50 border-b border-[#ECE4DD] bg-[#FAF8F5]/85 backdrop-blur-md">
-                <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
+                <div
+                    className="absolute inset-0 z-0 bg-cover bg-center"
+                    style={{ backgroundImage: "url('/colorpattern.jpg')" }}
+                />
+
+                {/* Blur + White Overlay */}
+                <div className="absolute inset-0 z-0 bg-[#FAF8F5]/55 backdrop-blur-[5px]" />
+
+                {/* Optional gradient */}
+                <div className="absolute inset-0 z-0 bg-gradient-to-r from-white/10 via-transparent to-white/10" />
+
+                <nav className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
 
                     {/* Logo */}
                     <Link
                         href="/"
                         className="flex items-center gap-3 transition-opacity hover:opacity-90"
                     >
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#DCEAD8] shadow-sm">
+                        <div className="text-4xl">
                             ☕
                         </div>
 
@@ -72,9 +83,18 @@ export default function ReaderLayout({
             {/* ========================= */}
             {/* Footer */}
             {/* ========================= */}
-            <footer className="border-t border-[#ECE4DD] bg-[#FCFBF9]">
-                <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-5 px-6 py-12">
+            <footer className="relative overflow-hidden border-t border-[#ECE4DD] bg-[#FCFBF9]">
+                <div
+                    className="absolute inset-0 z-0 bg-cover bg-center"
+                    style={{backgroundImage: "url('/colorpattern.jpg')"}}
+                />
 
+                <div className="absolute inset-0 z-0 bg-[#FAF8F5]/50 backdrop-blur-[5px]"/>
+
+                {/* Optional gradient */}
+                <div className="absolute inset-0 z-0 bg-gradient-to-t from-white/30 via-transparent to-white/20" />
+
+                <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-5 px-6 py-12">
                     <div className="h-px w-20 bg-[#DDD2C8]" />
 
                     <p className="font-serif text-lg italic text-[#6E6560]">

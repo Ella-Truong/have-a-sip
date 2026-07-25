@@ -97,16 +97,18 @@ export default async function HomePage() {
                             <div className="relative flex h-[420px] items-center justify-center">
 
     {/* floating decorations */}
-
-    <span className="absolute left-6 top-6 text-3xl opacity-60">
-        ☁️
-    </span>
-
-    <span className="absolute right-8 top-16 text-2xl opacity-50">
+    <span
+        className="absolute left-10 top-24 text-lg opacity-35 animate-sparkle"
+        style={{ animationDelay: "1.6s" }}
+    >
         ✨
     </span>
 
-    <span className="absolute bottom-10 left-12 text-2xl opacity-60">
+    <span className="absolute right-8 top-16 text-2xl opacity-50 animate-sparkle">
+        ✨
+    </span>
+
+    <span className="absolute bottom-10 left-12 text-2xl opacity-60 animate-sway">
         🍃
     </span>
 

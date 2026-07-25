@@ -17,7 +17,6 @@ export const editorExtensions = [
   Link.configure({
     openOnClick: false,
   }),
-  Image,
   Placeholder.configure({
     placeholder: "Start writing..."
   }),

@@ -49,7 +49,7 @@ export default async function SipsPage({
 
             </div>
 
-            <div className="mx-auto max-w-6xl px-6 py-16">
+            <div className="mx-auto max-w-6xl px-6 py-16 animate-fade-down">
                 {/* Header */}
                 <section className="mb-12">
                     <p className="mb-4 text-xs font-medium text-[#71866A]">

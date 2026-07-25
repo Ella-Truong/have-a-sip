@@ -81,7 +81,7 @@ export default function AboutPage() {
 
                     {/* Right */}
 
-                    <aside>
+                    <aside className="animate-fade-up">
 
                         <div className="rounded-[2rem] bg-white/45 p-10 backdrop-blur-md ring-1 ring-white/70 shadow-[0_20px_60px_rgba(70,55,45,0.06)]">
 

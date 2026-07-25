@@ -76,7 +76,7 @@ export default function ReaderLayout({
             {/* ========================= */}
             {/* Main Content */}
             {/* ========================= */}
-            <main className=" relative flex-1 overflow-hidden">
+            <main className="relative flex-1 overflow-hidden animate-page-fade">
                 {children}
             </main>
 

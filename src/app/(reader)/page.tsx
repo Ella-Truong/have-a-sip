@@ -37,7 +37,7 @@ export default async function HomePage() {
                 {/* HERO */}
                 {/* ===================================================== */}
 
-                <section className="relative mb-28 overflow-hidden rounded-[36px] border border-[#ECE4DD] bg-gradient-to-br from-[#FFFDFB] via-[#FCF8F3] to-[#FAF6F2] px-8 py-20 md:px-16">
+                <section className="relative mb-28 overflow-hidden rounded-[36px] border border-[#ECE4DD] bg-gradient-to-br from-[#FFFDFB] via-[#FCF8F3] to-[#FAF6F2] px-8 py-20 md:px-16 animate-fade-up">
 
                     {/* watercolor blobs */}
 
@@ -146,7 +146,7 @@ export default async function HomePage() {
                 {/* CONTENT */}
                 {/* ===================================================== */}
 
-                <div className="grid gap-16 lg:grid-cols-[1fr_280px]">
+                <div className="grid gap-16 lg:grid-cols-[1fr_280px] animate-fade-in">
 
                     {/* Articles */}
 

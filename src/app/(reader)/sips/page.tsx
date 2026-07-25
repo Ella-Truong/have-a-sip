@@ -37,12 +37,22 @@ export default async function SipsPage({
     ]);
 
     return (
-        <main>
-            <div className="mx-auto max-w-6xl px-6 py-16">
+        <main className="relative overflow-visible">
+            {/* Background Decorations */}
+            <div className="pointer-events-none absolute inset-0 overflow-visible">
 
+                <div className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#F5E2EB]/40 blur-3xl" />
+
+                <div className="absolute right-0 top-[35rem] h-96 w-96 rounded-full bg-[#DDEDD8]/50 blur-3xl" />
+
+                <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#F7E8D5]/40 blur-3xl" />
+
+            </div>
+
+            <div className="mx-auto max-w-6xl px-6 py-16">
                 {/* Header */}
                 <section className="mb-12">
-                    <p className="mb-3 text-sm font-medium text-[#71866A]">
+                    <p className="mb-4 text-xs font-medium text-[#71866A]">
                         ☕ Have a Sip
                     </p>
 
@@ -68,7 +78,7 @@ export default async function SipsPage({
                                     <Link
                                         key={article.id}
                                         href={`/sips/${article.slug}`}
-                                        className="block rounded-2xl border border-[#E7E0DA] bg-white p-6 transition hover:-translate-y-0.5 hover:border-[#C9D5C3] hover:shadow-sm"
+                                        className="block rounded-2xl border border-[#E7E0DA] bg-[#fffdf8]/80 p-6 transition hover:-translate-y-0.5 hover:border-[#C9D5C3] hover:shadow-sm"
                                     >
                                         {/* Meta */}
                                         <div className="mb-3 flex items-center gap-2 text-xs text-[#9A918B]">

@@ -1,18 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import { GetCommentQuery } from "../validations/comment.validation";
+
 import {
-    Comment, 
+    CommentSummary, 
     CreateCommentInput,
     UpdateCommentInput,
 } from "@/backend/types/comment"
 
 export class CommentRepository {
     /**
+     * for Admin only
      * find comments from multiple different params (articleId, cupName)
      */
     async findComments(
         query: GetCommentQuery
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return prisma.comment.findMany({
             where: {
                 articleId: query.articleId,
@@ -35,11 +37,12 @@ export class CommentRepository {
 
 
     /**
+     * for Readers 
      * find comments by article ID
      */
     async findCommentsByArticleId(
         articleId: string
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return prisma.comment.findMany({
             where: {
                 articleId,
@@ -55,7 +58,7 @@ export class CommentRepository {
      */
     async createComment(
         data: CreateCommentInput
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return prisma.comment.create({
             data,
         })
@@ -67,7 +70,7 @@ export class CommentRepository {
     async updateComment(
         id: string,
         data: UpdateCommentInput
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return prisma.comment.update({
             where: {
                 id,
@@ -77,14 +80,29 @@ export class CommentRepository {
     }
 
     /**
+     * for Admin only
      * delete a comment
      */
     async deleteComment(
         id: string
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return prisma.comment.delete({
             where: {
                 id,
+            }
+        })
+    }
+
+    /**
+     * for Admin only
+     * delete entire conversation
+     */
+    async deleteConversation(
+        articleId: string
+    ): Promise<{count:number}> {
+        return prisma.comment.deleteMany({
+            where: {
+                articleId,
             }
         })
     }

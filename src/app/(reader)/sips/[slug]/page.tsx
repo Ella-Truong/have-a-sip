@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { JoinConversation } from "@/components/reader/JoinConversation";
+
 import { ArticleService } from "@/backend/services/article.service";
 
 const articleService = new ArticleService();
@@ -79,6 +81,11 @@ export default async function SipDetailPage({
                 <div className="mt-10 whitespace-pre-wrap text-[16px] leading-8 text-[#4F4945]">
                     {article.content}
                 </div>
+
+                {/* Conversation */}
+                <section className="mt-20 border-t border-[#e7e0da] pt-12">
+                    <JoinConversation articleId={article.id} />
+                </section>
 
                 <footer className="mt-16 border-t border-[#E7E0DA] pt-8">
                     <Link

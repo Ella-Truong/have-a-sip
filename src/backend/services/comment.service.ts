@@ -1,12 +1,10 @@
 import { CommentRepository } from "../repositories/comment.repository";
-import { Comment } from "@/backend/types/comment";
+import { CommentSummary } from "@/backend/types/comment";
 import {
     CreateCommentBody,
     UpdateCommentBody,
     GetCommentQuery,
 } from "@/backend/validations/comment.validation"
-
-
 
 export class CommentService {
     private commentRepository = new CommentRepository();
@@ -20,7 +18,7 @@ export class CommentService {
      */
     async getComments(
         query: GetCommentQuery
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return this.commentRepository.findComments(query)
     }
 
@@ -30,7 +28,7 @@ export class CommentService {
      */ 
     async getCommentsByArticleId(
         articleId: string
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return this.commentRepository.findCommentsByArticleId(articleId)
     }
 
@@ -39,7 +37,7 @@ export class CommentService {
      */
     async createComment(
         input: CreateCommentBody
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return this.commentRepository.createComment(input)
     }
 
@@ -49,7 +47,7 @@ export class CommentService {
     async updateComment(
         id: string,
         input: UpdateCommentBody
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return this.commentRepository.updateComment(id, input)
     }
 
@@ -58,7 +56,7 @@ export class CommentService {
      */
     async deleteComment(
         id: string
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return this.commentRepository.deleteComment(id)
     }
 }

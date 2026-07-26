@@ -1,3 +1,4 @@
+import { SipType } from "@generated/prisma";
 import { z } from "zod";
 
 export const createCommentSchema = z.object({
@@ -6,6 +7,10 @@ export const createCommentSchema = z.object({
         .trim()
         .min(2, "Cup name must be at leat 2 characters.")
         .max(30, "Cup name cannot exceed 30 characters"),
+    
+    sipType: z.enum(SipType, {
+        message: "Please choose a sip type."
+    }),
     
     content: z
         .string()

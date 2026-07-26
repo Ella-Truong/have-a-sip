@@ -8,7 +8,7 @@ export interface CommentSummary {
     articleId: string;
 }
 
-export interface CreateCommentInput {
+export interface CreateCommentData {
     cupName: string;
     sipType: SipType
     content: string;

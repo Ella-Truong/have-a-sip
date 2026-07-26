@@ -1,16 +1,36 @@
 import { CommentRepository } from "../repositories/comment.repository";
+import { ArticleRepository } from "../repositories/article.repository";
+
 import { CommentSummary } from "@/backend/types/comment";
+
 import {
     CreateCommentBody,
     UpdateCommentBody,
     GetCommentQuery,
 } from "@/backend/validations/comment.validation"
 
+
 export class CommentService {
     private commentRepository = new CommentRepository();
+    private articleRepository = new ArticleRepository();
 
     constructor(){
         this.commentRepository = new CommentRepository();
+        this.articleRepository = new ArticleRepository()
+    }
+    /**
+     * get comments by slug (reader)
+     */
+    async getCommentsByArticleSlug(
+        slug: string
+    ){
+        const article = await this.articleRepository.findArticleBySlug(slug)
+
+        if (!article) {
+            throw new Error("Article not found.")
+        }
+
+        return this.commentRepository.findCommentsByArticleId(article.id)
     }
 
     /**
@@ -22,23 +42,24 @@ export class CommentService {
         return this.commentRepository.findComments(query)
     }
 
-
-    /**
-     * get comments by Id (readers)
-     */ 
-    async getCommentsByArticleId(
-        articleId: string
-    ): Promise<CommentSummary[]>{
-        return this.commentRepository.findCommentsByArticleId(articleId)
-    }
-
     /**
      * create comment
      */
     async createComment(
-        input: CreateCommentBody
+        slug: string,
+        body: CreateCommentBody
     ): Promise<CommentSummary>{
-        return this.commentRepository.createComment(input)
+        const article = await this.articleRepository.findArticleBySlug(slug);
+        if (!article) {
+            throw new Error("Article not found.")
+        }
+
+        return this.commentRepository.createComment({
+            articleId: article.id,
+            cupName: body.cupName,
+            sipType: body.sipType,
+            content: body.content
+        })
     }
 
     /**

@@ -1,9 +1,10 @@
 import { prisma } from "@/lib/prisma";
+
 import { GetCommentQuery } from "../validations/comment.validation";
 
 import {
     CommentSummary, 
-    CreateCommentInput,
+    CreateCommentData,
     UpdateCommentInput,
 } from "@/backend/types/comment"
 
@@ -17,8 +18,12 @@ export class CommentRepository {
     ): Promise<CommentSummary[]>{
         return prisma.comment.findMany({
             where: {
-                articleId: query.articleId,
-                cupName: query.cupName,
+                ...(query.articleId && {
+                    articleId: query.articleId
+                }),
+                ...(query.cupName && {
+                    cupName: query.cupName
+                })
             },
             orderBy: {
                 createdAt: "asc"
@@ -57,7 +62,7 @@ export class CommentRepository {
      * create comment
      */
     async createComment(
-        data: CreateCommentInput
+        data: CreateCommentData
     ): Promise<CommentSummary>{
         return prisma.comment.create({
             data,
@@ -99,7 +104,7 @@ export class CommentRepository {
      */
     async deleteConversation(
         articleId: string
-    ): Promise<{count:number}> {
+    ): Promise<{count: number}> {
         return prisma.comment.deleteMany({
             where: {
                 articleId,

@@ -49,14 +49,39 @@ model Topic {
 
 model Comment {
   id      String @id @default(cuid())
+
   cupName String
+  sipType SipType
 
   content String @db.Text
 
   createdAt DateTime @default(now())
 
   articleId String
-  article   Article @relation(fields: [articleId], references: [id])
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, cupName])
+}
+
+enum SipType {
+  //coffee
+  ESPRESSO
+  AMERICANO
+  LATTE
+  CAPPUCCINO
+
+
+  //tea & matcha
+  MATCHA
+  HOT_CHOCOLATE
+  LEMONADE
+  JASMINE_TEA
+
+  //bakery
+  CROISSANT
+  BAGEL
+  MUFFIN
+  DONUT
 }
 
 model User {

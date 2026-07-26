@@ -11,13 +11,14 @@ const topicService = new TopicService();
 interface SipsPageProps {
     searchParams: Promise<{
         page?: string;
+        topic?: string;
     }>;
 }
 
 export default async function SipsPage({
     searchParams,
 }: SipsPageProps) {
-    const { page: pageParam } = await searchParams;
+    const { page: pageParam, topic } = await searchParams;
 
     const page = Math.max(
         1,
@@ -31,7 +32,8 @@ export default async function SipsPage({
     ] = await Promise.all([
         articleService.getArticles({
             page,
-            limit: 6,
+            limit: 5,
+            topic
         }),
         topicService.getTopics(),
     ]);
@@ -168,7 +170,7 @@ export default async function SipsPage({
 
                     {/* Right Side — Topics */}
                     <aside>
-                        <TopicsSidebar topics={topics} />
+                        <TopicsSidebar topics={topics} currentTopic={topic} />
                     </aside>
 
                 </div>

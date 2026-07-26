@@ -40,9 +40,9 @@ export class ArticleService {
     async getArticles(
         query: GetArticlesQuery
     ): Promise<PaginatedResponse<ArticleSummary>>{
-        const { page, limit} = query;
+        const { page, limit, topic} = query;
 
-        const {articles, totalItems} = await this.articleRepository.findArticles(page, limit);
+        const {articles, totalItems} = await this.articleRepository.findArticles(page, limit, topic);
 
         return {
             data: articles,

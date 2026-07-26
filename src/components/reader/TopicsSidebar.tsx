@@ -1,11 +1,14 @@
 import { Topic } from "@/backend/types/topic";
+import Link  from "next/link";
 
 interface TopicsSidebarProps {
     topics: Topic[];
+    currentTopic?: string;
 }
 
 export default function TopicsSidebar({
     topics,
+    currentTopic,
 }: TopicsSidebarProps) {
     return (
         <aside className="relative overflow-hidden rounded-2xl border border-[#E7E0DA]">
@@ -22,18 +25,30 @@ export default function TopicsSidebar({
             {/* Content */}
             <div className="relative z-10 p-6">
 
-                <h2 className="text-sm font-semibold text-[#3F3A37]">
+                <Link 
+                    href="/sips"
+                    className={`block rounded-lg px-3 py-2 text-sm transition ${
+                        !currentTopic
+                            ? "bg-[#F8F4EF] font-medium text-[#52634D]"
+                            : "text-[#817873] hover:bg-[#F8F4EF]"
+                    }`}
+                >
                     All Topics
-                </h2>
+                </Link>
 
                 <div className="mt-5 space-y-3">
                     {topics.map((topic) => (
-                        <div
+                        <Link
                             key={topic.id}
-                            className="text-sm text-[#817873]"
+                            href={`/sips?topic=${topic.slug}`}
+                            className={`block rounded-lg px-3 py-2 text-sm transition ${
+                                currentTopic === topic.slug
+                                    ? "bg-[#F8F4EF] font-medium text-[#52634D]"
+                                    : "text-[#817873] hover:bg-[#F8F4EF]"
+                            }`}
                         >
                             {topic.name}
-                        </div>
+                        </Link>
                     ))}
                 </div>
 

@@ -26,7 +26,9 @@ export const getArticlesSchema = z.object({
         .int()
         .min(1)
         .max(20)
-        .default(10)
+        .default(10),
+        
+    topic: z.string().optional()
 })
 //after validating, create GetArticleQuery type
 export type GetArticlesQuery = z.infer<typeof getArticlesSchema>;

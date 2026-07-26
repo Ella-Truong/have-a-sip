@@ -14,6 +14,7 @@ export async function GET(request: NextRequest){
         const query = {
             page: searchParams.get("page") ?? undefined,
             limit: searchParams.get("limit") ?? undefined,
+            topic: searchParams.get("topic") ?? undefined,
         }
     
         //validatedQuery: GetArticlesQuery

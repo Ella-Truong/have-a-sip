@@ -20,17 +20,25 @@ export class ArticleRepository {
      */
     async findArticles(
         page: number,
-        limit: number
+        limit: number,
+        topicSlug?: string,
     ): Promise<{
         articles: ArticleSummary[];
         totalItems: number;
     }> {
         const skip = (page-1)*limit;
 
+        const where = {
+            published: true,
+            ...(topicSlug && {
+                topic: {
+                    slug: topicSlug
+                }
+            })
+        }
+
         const articles = await prisma.article.findMany({
-            where: {
-                published: true,
-            },
+            where,
             include: {
                 topic: true
             },
@@ -43,9 +51,7 @@ export class ArticleRepository {
 
         //count all published articles
         const totalItems = await prisma.article.count({
-            where: {
-                published: true
-            },
+            where,
         });
 
         return {

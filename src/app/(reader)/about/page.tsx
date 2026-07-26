@@ -69,7 +69,7 @@ export default function AboutPage() {
 
                             <p>
                                 Today, this blog is my engineering
-                                journal—a place for backend development,
+                                journal - a place for backend development,
                                 system design, debugging stories, and the
                                 small lessons that make building software
                                 meaningful.
@@ -110,7 +110,7 @@ export default function AboutPage() {
                                     <p>
                                         I hope these posts feel less like
                                         lectures and more like conversations
-                                        over coffee—honest notes from someone
+                                        over coffee - honest notes from someone
                                         who is still learning every day.
                                     </p>
 

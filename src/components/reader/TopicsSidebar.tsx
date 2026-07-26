@@ -13,7 +13,7 @@ export default function TopicsSidebar({
             {/* Background */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('/colorpattern.jpg')" }}
+                style={{ backgroundImage: "url('/coffeebean.jpg')" }}
             />
 
             {/* Overlay */}

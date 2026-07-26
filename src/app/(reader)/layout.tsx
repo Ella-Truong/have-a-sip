@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {FaGithub, FaLinkedin, FaEnvelope} from "react-icons/fa6";
 
 export default function ReaderLayout({
     children,
@@ -14,7 +15,7 @@ export default function ReaderLayout({
             <header className="sticky top-0 z-50 border-b border-[#ECE4DD] bg-[#FAF8F5]/85 backdrop-blur-md">
                 <div
                     className="absolute inset-0 z-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('/colorpattern.jpg')" }}
+                    style={{ backgroundImage: "url('/coffeebean.jpg')" }}
                 />
 
                 {/* Blur + White Overlay */}
@@ -86,7 +87,7 @@ export default function ReaderLayout({
             <footer className="relative overflow-hidden border-t border-[#ECE4DD] bg-[#FCFBF9]">
                 <div
                     className="absolute inset-0 z-0 bg-cover bg-center"
-                    style={{backgroundImage: "url('/colorpattern.jpg')"}}
+                    style={{backgroundImage: "url('/coffeebean.jpg')"}}
                 />
 
                 <div className="absolute inset-0 z-0 bg-[#FAF8F5]/50 backdrop-blur-[5px]"/>
@@ -94,27 +95,67 @@ export default function ReaderLayout({
                 {/* Optional gradient */}
                 <div className="absolute inset-0 z-0 bg-gradient-to-t from-white/30 via-transparent to-white/20" />
 
-                <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-5 px-6 py-12">
-                    <div className="h-px w-20 bg-[#DDD2C8]" />
+                <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-12 px-6 py-12 md:flex-row md:items-start md:justify-between">
+                    {/* Left side */}
+                    <div className="max-w-lg flex-1">
+                        <div className="mb-6 h-px w-20 bg-[#DDD2C8]"/>
 
-                    <p className="font-serif text-lg italic text-[#6E6560]">
-                        Every cup has a story. Every bug has a lesson
-                    </p>
+                            <p className="mt-5 font-serif text-lg italic text-[#6E6560]">
+                                Every cup has a story. Every bug has a lesson
+                            </p>
 
-                    <h2 className="font-serif text-2xl font-semibold">
-                        Have a Sip ☕
-                    </h2>
+                            <h2 className="font-serif text-3xl font-semibold text-[#3F3A37]">
+                                Have a Sip ☕
+                            </h2>
 
-                    <p className="max-w-lg text-center text-sm leading-7 text-[#8F8781]">
-                        A quiet corner where I document what I learn about
-                        software engineering, backend development, and the
-                        small moments that make building enjoyable.
-                    </p>
+                            <p className="mt-5 leading-8 text-[#8F8781]">
+                                A quiet corner where I document what I learn about
+                                software engineering, backend development, and the
+                                small moments that make building enjoyable.
+                            </p>
 
-                    <p className="text-xs tracking-[0.25em] text-[#B0A7A1] uppercase">
-                        Learning • Building • Sharing
-                    </p>
+                    </div>
 
+                    {/* Right side */}
+                    <div className="w-full md:w-64">
+                        <p className="text-xs uppercase tracking-[0.35em] text-[#A39B95]">
+                            Find Me
+                        </p>
+                        <div className="mt-6 space-y-4">
+                            <a 
+                                href="https://github.com/Ella-Truong"
+                                target="_blank"
+                                className="flex items-center gap-3 text-[#6D6661] transition hover:translate-x-1 hover:text-[#3F3A37]"
+                            >
+                                <FaGithub className="h-5 w-5"/>
+                            </a>
+
+                            <a
+                                href="https://www.linkedin.com/in/ellatruong/"
+                                target="_blank"
+                                className="flex items-center gap-3 text-[#6D6661] transition hover:translate-x-1 hover:text-[#3F3A37]"
+                            >
+                                <FaLinkedin className="h-5 w-5"/>
+                            </a>
+
+                            <a
+                                href="mailto:ellatruong95@gmail.com"
+                                className="flex items-center gap-3 text-[#6D6661] transition hover:translate-x-1 hover:text-[#3F3A37]"
+                            >
+                                <FaEnvelope className="h-5 w-5"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="relative z-10 border-t border-[#ECE4DD]/70">
+                    <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-sm text-[#9C938D] md:flex-row md:items-center md:justify-between">
+
+                        <p>© 2026 Have a Sip. Crafted with coffee and curiosity.</p>
+
+                        <p>Learning • Building • Sharing</p>
+
+                    </div>
                 </div>
             </footer>
 

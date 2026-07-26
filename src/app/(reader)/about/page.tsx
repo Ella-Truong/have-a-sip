@@ -86,7 +86,7 @@ export default function AboutPage() {
                         <div className="relative overflow-hidden rounded-[2rem] p-10 backdrop-blur-md ring-1 ring-white/70 shadow-[0_20px_60px_rgba(70,55,45,0.06)]">
                             <div
                                 className="absolute inset-0 z-0 bg-cover bg-center"
-                                style={{backgroundImage: "url('/colorpattern.jpg')"}}
+                                style={{backgroundImage: "url('/coffeebean.jpg')"}}
                             />
 
                             <div className="absolute inset-0 z-0 bg-[#FAF8F5]/50 backdrop-blur-[5px]"/>

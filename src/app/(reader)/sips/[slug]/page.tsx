@@ -84,7 +84,7 @@ export default async function SipDetailPage({
 
                 {/* Conversation */}
                 <section className="mt-20 border-t border-[#e7e0da] pt-12">
-                    <JoinConversation articleId={article.id} />
+                    <JoinConversation articleSlug={article.slug} />
                 </section>
 
                 <footer className="mt-16 border-t border-[#E7E0DA] pt-8">

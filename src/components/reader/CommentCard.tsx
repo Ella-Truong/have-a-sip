@@ -6,10 +6,12 @@ import { SIP_OPTIONS } from "@/constants/sip";
 
 interface CommentCardProps {
     comment: CommentSummary;
+    onEdit?: () => void;
 }
 
 export function CommentCard({
     comment,
+    onEdit,
 }: CommentCardProps) {
     const sip = SIP_OPTIONS.find(
         (option) => option.type === comment.sipType
@@ -34,18 +36,30 @@ export function CommentCard({
                         </span>
                     </div>
 
-                    <time
-                        className="text-[11px] text-[#AAA29C]"
-                        dateTime={createdAt.toISOString()}
-                    >
-                        {createdAt.toLocaleDateString(
-                            "en-US",
-                            {
-                                month: "short",
-                                day: "numeric",
-                            }
+                    <div className="flex items-center gap-3">
+                        {onEdit && (
+                            <button
+                                type="button"
+                                onClick={onEdit}
+                                className="text-[11px] text-[#A58D7C] transition hover:text-[#8C7565]"
+                            >
+                                Edit
+                            </button>
                         )}
-                    </time>
+
+                        <time
+                            className="text-[11px] text-[#AAA29C]"
+                            dateTime={createdAt.toISOString()}
+                        >
+                            {createdAt.toLocaleDateString(
+                                "en-US",
+                                {
+                                    month: "short",
+                                    day: "numeric",
+                                }
+                            )}
+                        </time>
+                    </div>
                 </div>
 
                 <div className="mt-2 h-px w-12 bg-[#F0E8E2]" />

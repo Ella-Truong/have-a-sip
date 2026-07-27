@@ -21,6 +21,8 @@ export function ConversationSection({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    const [editingComment, setEditingComment] = useState<CommentSummary | null>(null);
+
     const hasCommented =
         identity != null &&
         comments.some(
@@ -71,9 +73,7 @@ export function ConversationSection({
         };
     }, [articleSlug]);
 
-    const handleCreateComment = async (
-        content: string
-    ) => {
+    const handleCreateComment = async (content: string) => {
         if (!identity) {
             return;
         }
@@ -107,19 +107,60 @@ export function ConversationSection({
         ]);
     };
 
+    const handleUpdateComment = async (content: string) => {
+        if (!editingComment) {
+            return
+        }
+
+        const response = await fetch(
+            `/api/comments/${editingComment.id}`,
+            {
+                method: "PATCH",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body: JSON.stringify({content})
+            }
+        );
+
+        if(!response.ok){
+            throw new Error();
+        }
+
+        const updatedComment: CommentSummary = await response.json()
+
+        setComments((prev) => prev.map((comment) => 
+            comment.id === updatedComment.id ? updatedComment : comment
+        ));
+
+        setEditingComment(null)
+    }
+
     return (
         <section className="space-y-10">
-            {identity && (
-                <CommentComposer
-                    disabled={hasCommented}
-                    onSubmit={handleCreateComment}
-                />
-            )}
+            {identity && 
+                (editingComment ? (
+                    <CommentComposer
+                        initialContent = {editingComment.content}
+                        submitLabel="Save"
+                        onSubmit={handleUpdateComment}
+                        onCancel={() => setEditingComment(null)}
+                    />
+                ) : (
+                    !hasCommented && (
+                        <CommentComposer
+                            onSubmit={handleCreateComment}
+                        />
+                    )
+                ))
+            }
 
             <CommentList
                 comments={comments}
                 loading={loading}
                 error={error}
+                identity={identity}
+                onEdit={setEditingComment}
             />
         </section>
     );

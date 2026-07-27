@@ -3,17 +3,22 @@
 import type { CommentSummary } from "@/backend/types/comment";
 
 import { CommentCard } from "./CommentCard";
+import { ConversationIdentity } from "@/backend/types/conversation";
 
 interface CommentListProps {
     comments: CommentSummary[];
     loading: boolean;
     error: string | null;
+    identity: ConversationIdentity | null
+    onEdit: (comment: CommentSummary) => void;
 }
 
 export function CommentList({
     comments,
     loading,
     error,
+    onEdit,
+    identity
 }: CommentListProps) {
     if (loading) {
         return (
@@ -51,6 +56,13 @@ export function CommentList({
                 <CommentCard
                     key={comment.id}
                     comment={comment}
+                    onEdit={
+                        identity &&
+                        comment.cupName === identity.cupName &&
+                        comment.sipType === identity.sipType 
+                            ? () => onEdit(comment)
+                            : undefined
+                    }
                 />
             ))}
         </div>

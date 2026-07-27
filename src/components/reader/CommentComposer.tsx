@@ -2,18 +2,20 @@
 
 import { useState } from "react";
 
-import  {cormorant} from "@/lib/fonts";
-
 interface CommentComposerProps {
-    disabled: boolean;
+    initialContent?: string;
+    submitLabel?: string;
     onSubmit: (content: string) => Promise<void>;
+    onCancel?: () => void;
 }
 
 export function CommentComposer({
-    disabled,
+    initialContent = "",
+    submitLabel = "Share",
     onSubmit,
+    onCancel,
 }: CommentComposerProps) {
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(initialContent);
     const [posting, setPosting] = useState(false);
 
     const handleSubmit = async (
@@ -30,27 +32,14 @@ export function CommentComposer({
         try {
             setPosting(true);
             await onSubmit(value);
-            setContent("");
+
+            if (!onCancel) {
+                setContent("");
+            }
         } finally {
             setPosting(false);
         }
     };
-
-    if (disabled) {
-        return (
-            <div className="text-center p-4">
-                <div className="flex items-center justify-center gap-3">
-                    <div className="h-px w-10 bg-[#e8dfd8]" />
-                    <span className="text-xs text-[#B8A89D]">✦</span>
-                    <div className="h-px w-10 bg-[#E8DFD8]" />
-                </div>
-
-                <p className={`${cormorant.className} text-base font-cormorant italic tracking-[0.04em] text-[#7a726d]`}>
-                    one cup, one thoughtful note
-                </p>
-            </div>
-        );
-    }
 
     return (
         <form
@@ -59,7 +48,9 @@ export function CommentComposer({
         >
             <textarea
                 value={content}
-                onChange={(event) => setContent(event.target.value)}
+                onChange={(event) =>
+                    setContent(event.target.value)
+                }
                 rows={4}
                 maxLength={1000}
                 placeholder="What did this article make you think about?"
@@ -85,30 +76,53 @@ export function CommentComposer({
                     {content.length}/1000
                 </span>
 
-                <button
-                    type="submit"
-                    disabled={
-                        posting ||
-                        content.trim().length === 0
-                    }
-                    className="
-                        rounded-full
-                        bg-[#71866A]
-                        px-5
-                        py-2
-                        text-sm
-                        font-medium
-                        text-white
-                        transition
-                        hover:bg-[#5F7358]
-                        disabled:cursor-not-allowed
-                        disabled:opacity-50
-                    "
-                >
-                    {posting
-                        ? "Posting..."
-                        : "Share"}
-                </button>
+                <div className="flex items-center gap-2">
+                    {onCancel && (
+                        <button
+                            type="button"
+                            onClick={onCancel}
+                            className="
+                                rounded-full
+                                border
+                                border-[#E7E0DA]
+                                px-5
+                                py-2
+                                text-sm
+                                font-medium
+                                text-[#6C645F]
+                                transition
+                                hover:bg-[#F8F5F3]
+                            "
+                        >
+                            Cancel
+                        </button>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={
+                            posting ||
+                            content.trim().length === 0
+                        }
+                        className="
+                            rounded-full
+                            bg-[#71866A]
+                            px-5
+                            py-2
+                            text-sm
+                            font-medium
+                            text-white
+                            transition
+                            hover:bg-[#5F7358]
+                            disabled:cursor-not-allowed
+                            disabled:opacity-50
+                        "
+                    >
+                        {posting
+                            ? "Saving..."
+                            : submitLabel}
+                    </button>
+                </div>
             </div>
         </form>
     );

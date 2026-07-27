@@ -26,6 +26,7 @@ export function JoinConversation({
         const saved = localStorage.getItem(storageKey);
 
         if (saved) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setIdentity(JSON.parse(saved));
         }
     }, [storageKey]);

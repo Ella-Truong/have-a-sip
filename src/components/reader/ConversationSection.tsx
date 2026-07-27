@@ -21,7 +21,8 @@ export function ConversationSection({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const [editingComment, setEditingComment] = useState<CommentSummary | null>(null);
+    const [editingComment, setEditingComment] =
+        useState<CommentSummary | null>(null);
 
     const hasCommented =
         identity != null &&
@@ -73,7 +74,9 @@ export function ConversationSection({
         };
     }, [articleSlug]);
 
-    const handleCreateComment = async (content: string) => {
+    const handleCreateComment = async (
+        content: string
+    ) => {
         if (!identity) {
             return;
         }
@@ -107,9 +110,11 @@ export function ConversationSection({
         ]);
     };
 
-    const handleUpdateComment = async (content: string) => {
+    const handleUpdateComment = async (
+        content: string
+    ) => {
         if (!editingComment) {
-            return
+            return;
         }
 
         const response = await fetch(
@@ -117,43 +122,59 @@ export function ConversationSection({
             {
                 method: "PATCH",
                 headers: {
-                    "Content-Type" : "application/json",
+                    "Content-Type":
+                        "application/json",
                 },
-                body: JSON.stringify({content})
+                body: JSON.stringify({
+                    content,
+                }),
             }
         );
 
-        if(!response.ok){
+        if (!response.ok) {
             throw new Error();
         }
 
-        const updatedComment: CommentSummary = await response.json()
+        const updatedComment: CommentSummary =
+            await response.json();
 
-        setComments((prev) => prev.map((comment) => 
-            comment.id === updatedComment.id ? updatedComment : comment
-        ));
+        setComments((prev) =>
+            prev.map((comment) =>
+                comment.id === updatedComment.id
+                    ? updatedComment
+                    : comment
+            )
+        );
 
-        setEditingComment(null)
-    }
+        setEditingComment(null);
+    };
 
     return (
         <section className="space-y-10">
-            {identity && 
+            {!loading &&
+                identity &&
                 (editingComment ? (
                     <CommentComposer
-                        initialContent = {editingComment.content}
+                        initialContent={
+                            editingComment.content
+                        }
                         submitLabel="Save"
-                        onSubmit={handleUpdateComment}
-                        onCancel={() => setEditingComment(null)}
+                        onSubmit={
+                            handleUpdateComment
+                        }
+                        onCancel={() =>
+                            setEditingComment(null)
+                        }
                     />
                 ) : (
                     !hasCommented && (
                         <CommentComposer
-                            onSubmit={handleCreateComment}
+                            onSubmit={
+                                handleCreateComment
+                            }
                         />
                     )
-                ))
-            }
+                ))}
 
             <CommentList
                 comments={comments}

@@ -1,22 +1,29 @@
 import { prisma } from "@/lib/prisma";
+
 import { GetCommentQuery } from "../validations/comment.validation";
+
 import {
-    Comment, 
-    CreateCommentInput,
+    CommentSummary, 
+    CreateCommentData,
     UpdateCommentInput,
 } from "@/backend/types/comment"
 
 export class CommentRepository {
     /**
+     * for Admin only
      * find comments from multiple different params (articleId, cupName)
      */
     async findComments(
         query: GetCommentQuery
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return prisma.comment.findMany({
             where: {
-                articleId: query.articleId,
-                cupName: query.cupName,
+                ...(query.articleId && {
+                    articleId: query.articleId
+                }),
+                ...(query.cupName && {
+                    cupName: query.cupName
+                })
             },
             orderBy: {
                 createdAt: "asc"
@@ -35,11 +42,12 @@ export class CommentRepository {
 
 
     /**
+     * for Readers 
      * find comments by article ID
      */
     async findCommentsByArticleId(
         articleId: string
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return prisma.comment.findMany({
             where: {
                 articleId,
@@ -54,8 +62,8 @@ export class CommentRepository {
      * create comment
      */
     async createComment(
-        data: CreateCommentInput
-    ): Promise<Comment>{
+        data: CreateCommentData
+    ): Promise<CommentSummary>{
         return prisma.comment.create({
             data,
         })
@@ -67,7 +75,7 @@ export class CommentRepository {
     async updateComment(
         id: string,
         data: UpdateCommentInput
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return prisma.comment.update({
             where: {
                 id,
@@ -77,14 +85,29 @@ export class CommentRepository {
     }
 
     /**
+     * for Admin only
      * delete a comment
      */
     async deleteComment(
         id: string
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return prisma.comment.delete({
             where: {
                 id,
+            }
+        })
+    }
+
+    /**
+     * for Admin only
+     * delete entire conversation
+     */
+    async deleteConversation(
+        articleId: string
+    ): Promise<{count: number}> {
+        return prisma.comment.deleteMany({
+            where: {
+                articleId,
             }
         })
     }

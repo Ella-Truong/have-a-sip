@@ -144,6 +144,7 @@ exports.Prisma.TopicScalarFieldEnum = {
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
   cupName: 'cupName',
+  sipType: 'sipType',
   content: 'content',
   createdAt: 'createdAt',
   articleId: 'articleId'
@@ -201,6 +202,21 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.SipType = exports.$Enums.SipType = {
+  ESPRESSO: 'ESPRESSO',
+  AMERICANO: 'AMERICANO',
+  LATTE: 'LATTE',
+  CAPPUCCINO: 'CAPPUCCINO',
+  MATCHA: 'MATCHA',
+  HOT_CHOCOLATE: 'HOT_CHOCOLATE',
+  LEMONADE: 'LEMONADE',
+  JASMINE_TEA: 'JASMINE_TEA',
+  CROISSANT: 'CROISSANT',
+  BAGEL: 'BAGEL',
+  MUFFIN: 'MUFFIN',
+  DONUT: 'DONUT'
+};
+
 exports.Role = exports.$Enums.Role = {
   ADMIN: 'ADMIN'
 };

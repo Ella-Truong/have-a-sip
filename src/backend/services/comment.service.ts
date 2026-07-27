@@ -1,5 +1,8 @@
 import { CommentRepository } from "../repositories/comment.repository";
-import { Comment } from "@/backend/types/comment";
+import { ArticleRepository } from "../repositories/article.repository";
+
+import { CommentSummary } from "@/backend/types/comment";
+
 import {
     CreateCommentBody,
     UpdateCommentBody,
@@ -7,12 +10,27 @@ import {
 } from "@/backend/validations/comment.validation"
 
 
-
 export class CommentService {
     private commentRepository = new CommentRepository();
+    private articleRepository = new ArticleRepository();
 
     constructor(){
         this.commentRepository = new CommentRepository();
+        this.articleRepository = new ArticleRepository()
+    }
+    /**
+     * get comments by slug (reader)
+     */
+    async getCommentsByArticleSlug(
+        slug: string
+    ){
+        const article = await this.articleRepository.findArticleBySlug(slug)
+
+        if (!article) {
+            throw new Error("Article not found.")
+        }
+
+        return this.commentRepository.findCommentsByArticleId(article.id)
     }
 
     /**
@@ -20,27 +38,28 @@ export class CommentService {
      */
     async getComments(
         query: GetCommentQuery
-    ): Promise<Comment[]>{
+    ): Promise<CommentSummary[]>{
         return this.commentRepository.findComments(query)
-    }
-
-
-    /**
-     * get comments by Id (readers)
-     */ 
-    async getCommentsByArticleId(
-        articleId: string
-    ): Promise<Comment[]>{
-        return this.commentRepository.findCommentsByArticleId(articleId)
     }
 
     /**
      * create comment
      */
     async createComment(
-        input: CreateCommentBody
-    ): Promise<Comment>{
-        return this.commentRepository.createComment(input)
+        slug: string,
+        body: CreateCommentBody
+    ): Promise<CommentSummary>{
+        const article = await this.articleRepository.findArticleBySlug(slug);
+        if (!article) {
+            throw new Error("Article not found.")
+        }
+
+        return this.commentRepository.createComment({
+            articleId: article.id,
+            cupName: body.cupName,
+            sipType: body.sipType,
+            content: body.content
+        })
     }
 
     /**
@@ -49,7 +68,7 @@ export class CommentService {
     async updateComment(
         id: string,
         input: UpdateCommentBody
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return this.commentRepository.updateComment(id, input)
     }
 
@@ -58,7 +77,7 @@ export class CommentService {
      */
     async deleteComment(
         id: string
-    ): Promise<Comment>{
+    ): Promise<CommentSummary>{
         return this.commentRepository.deleteComment(id)
     }
 }

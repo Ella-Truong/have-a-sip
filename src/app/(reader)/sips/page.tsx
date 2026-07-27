@@ -71,7 +71,6 @@ export default async function SipsPage({
 
                 {/* Main Layout */}
                 <div className="grid gap-10 lg:grid-cols-[1fr_260px]">
-
                     {/* Left Side — Articles */}
                     <section>
                         {articles.length > 0 ? (

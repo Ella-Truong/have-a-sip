@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { JoinConversation } from "@/components/reader/JoinConversation";
+
 import { ArticleService } from "@/backend/services/article.service";
 
 const articleService = new ArticleService();
@@ -26,14 +28,11 @@ export default async function SipDetailPage({
     return (
         <main>
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
                 <div className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#F5E2EB]/50 blur-3xl" />
-
                 <div className="absolute right-0 top-[35rem] h-96 w-96 rounded-full bg-[#DDEDD8]/50 blur-3xl" />
-
                 <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#F7E8D5]/50 blur-3xl" />
-
             </div>
+            
             <article className="mx-auto max-w-3xl px-6 py-16">
                 <Link
                     href="/sips"
@@ -82,6 +81,11 @@ export default async function SipDetailPage({
                 <div className="mt-10 whitespace-pre-wrap text-[16px] leading-8 text-[#4F4945]">
                     {article.content}
                 </div>
+
+                {/* Conversation */}
+                <section className="mt-20 border-t border-[#e7e0da] pt-12">
+                    <JoinConversation articleSlug={article.slug} />
+                </section>
 
                 <footer className="mt-16 border-t border-[#E7E0DA] pt-8">
                     <Link

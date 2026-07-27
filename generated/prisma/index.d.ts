@@ -53,13 +53,35 @@ export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTok
  * Enums
  */
 export namespace $Enums {
-  export const Role: {
+  export const SipType: {
+  ESPRESSO: 'ESPRESSO',
+  AMERICANO: 'AMERICANO',
+  LATTE: 'LATTE',
+  CAPPUCCINO: 'CAPPUCCINO',
+  MATCHA: 'MATCHA',
+  HOT_CHOCOLATE: 'HOT_CHOCOLATE',
+  LEMONADE: 'LEMONADE',
+  JASMINE_TEA: 'JASMINE_TEA',
+  CROISSANT: 'CROISSANT',
+  BAGEL: 'BAGEL',
+  MUFFIN: 'MUFFIN',
+  DONUT: 'DONUT'
+};
+
+export type SipType = (typeof SipType)[keyof typeof SipType]
+
+
+export const Role: {
   ADMIN: 'ADMIN'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
 
 }
+
+export type SipType = $Enums.SipType
+
+export const SipType: typeof $Enums.SipType
 
 export type Role = $Enums.Role
 
@@ -3809,6 +3831,7 @@ export namespace Prisma {
   export type CommentMinAggregateOutputType = {
     id: string | null
     cupName: string | null
+    sipType: $Enums.SipType | null
     content: string | null
     createdAt: Date | null
     articleId: string | null
@@ -3817,6 +3840,7 @@ export namespace Prisma {
   export type CommentMaxAggregateOutputType = {
     id: string | null
     cupName: string | null
+    sipType: $Enums.SipType | null
     content: string | null
     createdAt: Date | null
     articleId: string | null
@@ -3825,6 +3849,7 @@ export namespace Prisma {
   export type CommentCountAggregateOutputType = {
     id: number
     cupName: number
+    sipType: number
     content: number
     createdAt: number
     articleId: number
@@ -3835,6 +3860,7 @@ export namespace Prisma {
   export type CommentMinAggregateInputType = {
     id?: true
     cupName?: true
+    sipType?: true
     content?: true
     createdAt?: true
     articleId?: true
@@ -3843,6 +3869,7 @@ export namespace Prisma {
   export type CommentMaxAggregateInputType = {
     id?: true
     cupName?: true
+    sipType?: true
     content?: true
     createdAt?: true
     articleId?: true
@@ -3851,6 +3878,7 @@ export namespace Prisma {
   export type CommentCountAggregateInputType = {
     id?: true
     cupName?: true
+    sipType?: true
     content?: true
     createdAt?: true
     articleId?: true
@@ -3932,6 +3960,7 @@ export namespace Prisma {
   export type CommentGroupByOutputType = {
     id: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt: Date
     articleId: string
@@ -3957,6 +3986,7 @@ export namespace Prisma {
   export type CommentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     cupName?: boolean
+    sipType?: boolean
     content?: boolean
     createdAt?: boolean
     articleId?: boolean
@@ -3966,6 +3996,7 @@ export namespace Prisma {
   export type CommentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     cupName?: boolean
+    sipType?: boolean
     content?: boolean
     createdAt?: boolean
     articleId?: boolean
@@ -3975,6 +4006,7 @@ export namespace Prisma {
   export type CommentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     cupName?: boolean
+    sipType?: boolean
     content?: boolean
     createdAt?: boolean
     articleId?: boolean
@@ -3984,12 +4016,13 @@ export namespace Prisma {
   export type CommentSelectScalar = {
     id?: boolean
     cupName?: boolean
+    sipType?: boolean
     content?: boolean
     createdAt?: boolean
     articleId?: boolean
   }
 
-  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cupName" | "content" | "createdAt" | "articleId", ExtArgs["result"]["comment"]>
+  export type CommentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "cupName" | "sipType" | "content" | "createdAt" | "articleId", ExtArgs["result"]["comment"]>
   export type CommentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     article?: boolean | ArticleDefaultArgs<ExtArgs>
   }
@@ -4008,6 +4041,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       cupName: string
+      sipType: $Enums.SipType
       content: string
       createdAt: Date
       articleId: string
@@ -4437,6 +4471,7 @@ export namespace Prisma {
   interface CommentFieldRefs {
     readonly id: FieldRef<"Comment", 'String'>
     readonly cupName: FieldRef<"Comment", 'String'>
+    readonly sipType: FieldRef<"Comment", 'SipType'>
     readonly content: FieldRef<"Comment", 'String'>
     readonly createdAt: FieldRef<"Comment", 'DateTime'>
     readonly articleId: FieldRef<"Comment", 'String'>
@@ -9244,6 +9279,7 @@ export namespace Prisma {
   export const CommentScalarFieldEnum: {
     id: 'id',
     cupName: 'cupName',
+    sipType: 'sipType',
     content: 'content',
     createdAt: 'createdAt',
     articleId: 'articleId'
@@ -9377,6 +9413,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SipType'
+   */
+  export type EnumSipTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SipType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SipType[]'
+   */
+  export type ListEnumSipTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SipType[]'>
     
 
 
@@ -9557,6 +9607,7 @@ export namespace Prisma {
     NOT?: CommentWhereInput | CommentWhereInput[]
     id?: StringFilter<"Comment"> | string
     cupName?: StringFilter<"Comment"> | string
+    sipType?: EnumSipTypeFilter<"Comment"> | $Enums.SipType
     content?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     articleId?: StringFilter<"Comment"> | string
@@ -9566,6 +9617,7 @@ export namespace Prisma {
   export type CommentOrderByWithRelationInput = {
     id?: SortOrder
     cupName?: SortOrder
+    sipType?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     articleId?: SortOrder
@@ -9574,19 +9626,22 @@ export namespace Prisma {
 
   export type CommentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    articleId_cupName?: CommentArticleIdCupNameCompoundUniqueInput
     AND?: CommentWhereInput | CommentWhereInput[]
     OR?: CommentWhereInput[]
     NOT?: CommentWhereInput | CommentWhereInput[]
     cupName?: StringFilter<"Comment"> | string
+    sipType?: EnumSipTypeFilter<"Comment"> | $Enums.SipType
     content?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     articleId?: StringFilter<"Comment"> | string
     article?: XOR<ArticleScalarRelationFilter, ArticleWhereInput>
-  }, "id">
+  }, "id" | "articleId_cupName">
 
   export type CommentOrderByWithAggregationInput = {
     id?: SortOrder
     cupName?: SortOrder
+    sipType?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     articleId?: SortOrder
@@ -9601,6 +9656,7 @@ export namespace Prisma {
     NOT?: CommentScalarWhereWithAggregatesInput | CommentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Comment"> | string
     cupName?: StringWithAggregatesFilter<"Comment"> | string
+    sipType?: EnumSipTypeWithAggregatesFilter<"Comment"> | $Enums.SipType
     content?: StringWithAggregatesFilter<"Comment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Comment"> | Date | string
     articleId?: StringWithAggregatesFilter<"Comment"> | string
@@ -10017,6 +10073,7 @@ export namespace Prisma {
   export type CommentCreateInput = {
     id?: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt?: Date | string
     article: ArticleCreateNestedOneWithoutCommentsInput
@@ -10025,6 +10082,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateInput = {
     id?: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt?: Date | string
     articleId: string
@@ -10033,6 +10091,7 @@ export namespace Prisma {
   export type CommentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     article?: ArticleUpdateOneRequiredWithoutCommentsNestedInput
@@ -10041,6 +10100,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     articleId?: StringFieldUpdateOperationsInput | string
@@ -10049,6 +10109,7 @@ export namespace Prisma {
   export type CommentCreateManyInput = {
     id?: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt?: Date | string
     articleId: string
@@ -10057,6 +10118,7 @@ export namespace Prisma {
   export type CommentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10064,6 +10126,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     articleId?: StringFieldUpdateOperationsInput | string
@@ -10598,14 +10661,27 @@ export namespace Prisma {
     slug?: SortOrder
   }
 
+  export type EnumSipTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SipType | EnumSipTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSipTypeFilter<$PrismaModel> | $Enums.SipType
+  }
+
   export type ArticleScalarRelationFilter = {
     is?: ArticleWhereInput
     isNot?: ArticleWhereInput
   }
 
+  export type CommentArticleIdCupNameCompoundUniqueInput = {
+    articleId: string
+    cupName: string
+  }
+
   export type CommentCountOrderByAggregateInput = {
     id?: SortOrder
     cupName?: SortOrder
+    sipType?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     articleId?: SortOrder
@@ -10614,6 +10690,7 @@ export namespace Prisma {
   export type CommentMaxOrderByAggregateInput = {
     id?: SortOrder
     cupName?: SortOrder
+    sipType?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     articleId?: SortOrder
@@ -10622,9 +10699,20 @@ export namespace Prisma {
   export type CommentMinOrderByAggregateInput = {
     id?: SortOrder
     cupName?: SortOrder
+    sipType?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
     articleId?: SortOrder
+  }
+
+  export type EnumSipTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SipType | EnumSipTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSipTypeWithAggregatesFilter<$PrismaModel> | $Enums.SipType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSipTypeFilter<$PrismaModel>
+    _max?: NestedEnumSipTypeFilter<$PrismaModel>
   }
 
   export type EnumRoleFilter<$PrismaModel = never> = {
@@ -10960,6 +11048,10 @@ export namespace Prisma {
     connect?: ArticleWhereUniqueInput
   }
 
+  export type EnumSipTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SipType
+  }
+
   export type ArticleUpdateOneRequiredWithoutCommentsNestedInput = {
     create?: XOR<ArticleCreateWithoutCommentsInput, ArticleUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: ArticleCreateOrConnectWithoutCommentsInput
@@ -11266,6 +11358,23 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumSipTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SipType | EnumSipTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSipTypeFilter<$PrismaModel> | $Enums.SipType
+  }
+
+  export type NestedEnumSipTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SipType | EnumSipTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SipType[] | ListEnumSipTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSipTypeWithAggregatesFilter<$PrismaModel> | $Enums.SipType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSipTypeFilter<$PrismaModel>
+    _max?: NestedEnumSipTypeFilter<$PrismaModel>
+  }
+
   export type NestedEnumRoleFilter<$PrismaModel = never> = {
     equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
@@ -11330,6 +11439,7 @@ export namespace Prisma {
   export type CommentCreateWithoutArticleInput = {
     id?: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt?: Date | string
   }
@@ -11337,6 +11447,7 @@ export namespace Prisma {
   export type CommentUncheckedCreateWithoutArticleInput = {
     id?: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt?: Date | string
   }
@@ -11396,6 +11507,7 @@ export namespace Prisma {
     NOT?: CommentScalarWhereInput | CommentScalarWhereInput[]
     id?: StringFilter<"Comment"> | string
     cupName?: StringFilter<"Comment"> | string
+    sipType?: EnumSipTypeFilter<"Comment"> | $Enums.SipType
     content?: StringFilter<"Comment"> | string
     createdAt?: DateTimeFilter<"Comment"> | Date | string
     articleId?: StringFilter<"Comment"> | string
@@ -11804,6 +11916,7 @@ export namespace Prisma {
   export type CommentCreateManyArticleInput = {
     id?: string
     cupName: string
+    sipType: $Enums.SipType
     content: string
     createdAt?: Date | string
   }
@@ -11811,6 +11924,7 @@ export namespace Prisma {
   export type CommentUpdateWithoutArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11818,6 +11932,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateWithoutArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11825,6 +11940,7 @@ export namespace Prisma {
   export type CommentUncheckedUpdateManyWithoutArticleInput = {
     id?: StringFieldUpdateOperationsInput | string
     cupName?: StringFieldUpdateOperationsInput | string
+    sipType?: EnumSipTypeFieldUpdateOperationsInput | $Enums.SipType
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Armchair } from "lucide-react";
 
 import type { ConversationIdentity } from "@/backend/types/conversation";
@@ -17,20 +17,18 @@ export function JoinConversation({
 }: JoinConversationProps) {
     const conversationRef = useRef<HTMLDivElement>(null);
 
+    const storageKey = `conversation:${articleSlug}`;
+
     const [identity, setIdentity] =
-        useState<ConversationIdentity | null>(() => {
-            if (typeof window === "undefined") {
-                return null;
-            }
+        useState<ConversationIdentity | null>(null);
 
-            const saved = localStorage.getItem(
-                `conversation:${articleSlug}`
-            );
+    useEffect(() => {
+        const saved = localStorage.getItem(storageKey);
 
-            return saved
-                ? (JSON.parse(saved) as ConversationIdentity)
-                : null;
-        });
+        if (saved) {
+            setIdentity(JSON.parse(saved));
+        }
+    }, [storageKey]);
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -60,7 +58,7 @@ export function JoinConversation({
         identity: ConversationIdentity
     ) => {
         localStorage.setItem(
-            `conversation:${articleSlug}`,
+            storageKey,
             JSON.stringify(identity)
         );
 

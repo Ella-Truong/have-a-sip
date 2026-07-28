@@ -18,7 +18,7 @@ export default async function AdminTopicsPage() {
                 }}
             />
 
-            <div className="absolute inset-0 bg-white/50" />
+            <div className="absolute inset-0 bg-white/60" />
 
             <div className="relative mx-auto max-w-4xl">
                 {/* Header */}

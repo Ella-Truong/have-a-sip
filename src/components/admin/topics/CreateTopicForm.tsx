@@ -11,7 +11,7 @@ export default function CreateTopicForm() {
     const [error, setError] = useState("");
 
     async function handleSubmit(
-        event: React.SubmitEvent<HTMLFormElement>
+        event: React.FormEvent<HTMLFormElement>
     ) {
         event.preventDefault();
 
@@ -47,44 +47,56 @@ export default function CreateTopicForm() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="mb-8 rounded-2xl border border-[#E7E0DA] bg-white p-6"
+            className="relative mb-8 overflow-hidden rounded-2xl border border-[#E7E0DA]"
         >
-            <label
-                htmlFor="name"
-                className="mb-2 block text-sm font-medium text-[#4F4945]"
-            >
-                New Topic
-            </label>
+            {/* Coffee bean background */}
+            <div
+                className="absolute inset-0 scale-105 bg-cover bg-center blur-sm"
+                style={{
+                    backgroundImage:
+                        "url('/coffeebean.jpg')",
+                }}
+            />
 
-            <div className="flex gap-3">
-                <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(event) =>
-                        setName(event.target.value)
-                    }
-                    required
-                    placeholder="Backend Engineering"
-                    className="flex-1 rounded-xl border border-[#DDD5CE] bg-[#FCFBF9] px-4 py-3 text-[#3F3A37] outline-none focus:border-[#A8BCA0] focus:ring-2 focus:ring-[#E4EFE0]"
-                />
+            {/* Cream overlay */}
+            <div className="absolute inset-0 bg-white/60" />
 
-                <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="rounded-xl bg-[#B8C8B0] px-5 py-3 text-sm font-medium text-[#34402F] transition hover:bg-[#A8BCA0] disabled:opacity-60"
-                >
-                    {isSubmitting
-                        ? "Adding..."
-                        : "Add Topic"}
-                </button>
+            {/* Content */}
+            <div className="relative p-4">
+                <h2 className="mb-3 font-serif text-base text-[#4E4038]">
+                    New Topic
+                </h2>
+
+                <div className="flex gap-3">
+                    <input
+                        id="name"
+                        type="text"
+                        value={name}
+                        onChange={(event) =>
+                            setName(event.target.value)
+                        }
+                        required
+                        placeholder="Backend Engineering"
+                        className="flex-1 rounded-xl border border-[#DDD5CE] bg-white/90 px-4 py-2.5 text-[#3F3A37] outline-none transition focus:border-[#A8BCA0] focus:ring-2 focus:ring-[#E4EFE0]"
+                    />
+
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="rounded-xl bg-[#B8C8B0] px-5 py-2.5 text-sm font-medium text-[#34402F] transition hover:bg-[#A8BCA0] disabled:opacity-60"
+                    >
+                        {isSubmitting
+                            ? "Adding..."
+                            : "Add Topic"}
+                    </button>
+                </div>
+
+                {error && (
+                    <p className="mt-2 text-sm text-[#A65F58]">
+                        {error}
+                    </p>
+                )}
             </div>
-
-            {error && (
-                <p className="mt-3 text-sm text-[#A65F58]">
-                    {error}
-                </p>
-            )}
         </form>
     );
 }

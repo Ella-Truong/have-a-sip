@@ -19,8 +19,7 @@ export function JoinConversation({
 
     const storageKey = `conversation:${articleSlug}`;
 
-    const [identity, setIdentity] =
-        useState<ConversationIdentity | null>(null);
+    const [identity, setIdentity] = useState<ConversationIdentity | null>(null);
 
     useEffect(() => {
         const saved = localStorage.getItem(storageKey);
@@ -32,9 +31,7 @@ export function JoinConversation({
     }, [storageKey]);
 
     const [modalOpen, setModalOpen] = useState(false);
-
-    const [isConversationVisible, setIsConversationVisible] =
-        useState(false);
+    const [isConversationVisible, setIsConversationVisible] = useState(false);
 
     const scrollToConversation = () => {
         requestAnimationFrame(() => {

@@ -56,8 +56,7 @@ export function JoinConversationForm({
 
                     <div className="grid grid-cols-6 gap-2">
                         {SIP_OPTIONS.map((option) => {
-                            const selected =
-                                option.type === sipType;
+                            const selected = option.type === sipType;
 
                             return (
                                 <Tooltip key={option.type}>

@@ -18,8 +18,7 @@ export default async function SipDetailPage({
 }: SipDetailPageProps) {
     const { slug } = await params;
 
-    const article =
-        await articleService.getArticleBySlug(slug);
+    const article = await articleService.getArticleBySlug(slug);
 
     if (!article) {
         notFound();
@@ -77,7 +76,8 @@ export default async function SipDetailPage({
                         </p>
                     )}
                 </header>
-
+                
+                {/* Article content */}
                 <div className="mt-10 whitespace-pre-wrap text-[16px] leading-8 text-[#4F4945]">
                     {article.content}
                 </div>

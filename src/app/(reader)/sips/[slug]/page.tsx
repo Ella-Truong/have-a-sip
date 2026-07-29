@@ -78,10 +78,11 @@ export default async function SipDetailPage({
                 </header>
                 
                 {/* Article content */}
-                <div className="mt-10 whitespace-pre-wrap text-[16px] leading-8 text-[#4F4945]">
-                    {article.content}
-                </div>
-
+                <div 
+                    className=" article-content mt-10"
+                    dangerouslySetInnerHTML={{ __html: article.content }}
+                />
+                   
                 {/* Conversation */}
                 <section className="mt-20 border-t border-[#e7e0da] pt-12">
                     <JoinConversation articleSlug={article.slug} />

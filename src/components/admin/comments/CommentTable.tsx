@@ -213,13 +213,13 @@ export function CommentTable() {
                     <TableBody>
                         {comments.map((comment) => (
                             <TableRow key={comment.id}>
-                                <TableCell>
+                                <TableCell className="w-[42%]">
                                     <div className="space-y-2">
                                         <div className="font-medium text-[#4D3C35]">
                                             {comment.cupName}
                                         </div>
 
-                                        <p className="line-clamp-2 text-sm text-[#80756D]">
+                                        <p className="line-clamp-2 break-words text-sm text-[#80756D]">
                                             {comment.content}
                                         </p>
                                     </div>

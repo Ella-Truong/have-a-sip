@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Topic } from "@/backend/types/topic";
+import { TopicSummary } from "@/backend/types/topic";
 import { 
     ArticleFormData,
     CreateArticleInput,
@@ -13,7 +13,7 @@ import {
 import ContentEditor from "./ContentEditor";
 interface ArticleFormProps {
     article?: ArticleFormData
-    topics: Topic[];
+    topics: TopicSummary[];
 }
 
 export default function ArticleForm({

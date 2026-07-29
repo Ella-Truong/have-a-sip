@@ -1,4 +1,4 @@
-import { Topic } from "./topic";
+import { TopicSummary } from "./topic";
 
 export interface ArticleSummary {
     id: string;
@@ -10,7 +10,7 @@ export interface ArticleSummary {
     published: boolean;
     publishedAt: Date | null;
     updatedAt: Date;
-    topic: Topic;
+    topic: TopicSummary;
     topicId: string;
 }
 

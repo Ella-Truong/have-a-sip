@@ -1,8 +1,8 @@
-import { Topic } from "@/backend/types/topic";
+import { TopicSummary } from "@/backend/types/topic";
 import Link  from "next/link";
 
 interface TopicsSidebarProps {
-    topics: Topic[];
+    topics: TopicSummary[];
     currentTopic?: string;
 }
 

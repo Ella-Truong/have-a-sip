@@ -133,14 +133,14 @@ export function CommentTable() {
             </p>
             
             <div className="overflow-hidden rounded-3xl border border-[#E8DDD3] bg-[#FCFBF9] shadow-sm">
-                <Table>
+                <Table className="table-fixed w-full">
                     <TableHeader className="bg-[#f7f2ec]">
                         <TableRow className="hover:bg-transparent ">
-                            <TableHead className="w-[42%] font-semibold text-[#5B463A]">
+                            <TableHead className="w-[30%] font-semibold text-[#5B463A]">
                                 Comment
                             </TableHead>
 
-                            <TableHead className="w-[20%] font-semibold text-[#5B463A]">
+                            <TableHead className="w-[30%] font-semibold text-[#5B463A]">
                                 Article
                             </TableHead>
 
@@ -213,23 +213,23 @@ export function CommentTable() {
                     <TableBody>
                         {comments.map((comment) => (
                             <TableRow key={comment.id}>
-                                <TableCell className="w-[42%]">
-                                    <div className="space-y-2">
+                                <TableCell className="w-[30%] align-top">
+                                    <div className="space-y-2 overflow-hidden">
                                         <div className="font-medium text-[#4D3C35]">
                                             {comment.cupName}
                                         </div>
 
-                                        <p className="line-clamp-2 break-words text-sm text-[#80756D]">
+                                        <p className="line-clamp-2 break-all text-sm text-[#80756D]">
                                             {comment.content}
                                         </p>
                                     </div>
                                 </TableCell>
 
-                                <TableCell className="text-[#5b463a]">
+                                <TableCell className="truncate text-[#5b463a]">
                                     {comment.article.title}
                                 </TableCell>
 
-                                <TableCell className="text-[#5b463a]">
+                                <TableCell className="truncate text-[#5b463a]">
                                     {comment.article.topic.name}
                                 </TableCell>
 

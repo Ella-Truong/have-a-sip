@@ -4,7 +4,7 @@
 import { prisma } from "@/lib/prisma";
 import {
     CreateTopicData,
-    Topic,
+    TopicSummary,
     UpdateTopicData,
 } from "../types/topic"
 
@@ -13,7 +13,7 @@ export class TopicRepository {
     /**
      * Find only published topics to return to readers
      */
-    async findPublishedTopic(): Promise<Topic[]>{
+    async findPublishedTopic(): Promise<TopicSummary[]>{
         return prisma.topic.findMany({
             where:{
                 articles:{
@@ -32,7 +32,7 @@ export class TopicRepository {
     /**
      * Admin finds all topics
      */
-    async findTopics(): Promise<Topic[]>{
+    async findTopics(): Promise<TopicSummary[]>{
         return await prisma.topic.findMany({
             orderBy: {
                 name: "asc",
@@ -45,7 +45,7 @@ export class TopicRepository {
      */
     async findTopicById(
         id: string
-    ): Promise<Topic | null>{
+    ): Promise<TopicSummary | null>{
         return prisma.topic.findUnique({
             where:{
                 id,
@@ -59,7 +59,7 @@ export class TopicRepository {
      */
     async createTopic(
         data: CreateTopicData
-    ): Promise<Topic>{
+    ): Promise<TopicSummary>{
         return prisma.topic.create({
             data
         })
@@ -71,7 +71,7 @@ export class TopicRepository {
     async updateTopic(
         id: string,
         data: UpdateTopicData
-    ): Promise<Topic>{
+    ): Promise<TopicSummary>{
         return prisma.topic.update({
             where:{
                 id,

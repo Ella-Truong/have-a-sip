@@ -3,6 +3,7 @@ import {
     ArrowRight,
     FileText,
     Leaf,
+    MessageCircle,
     NotebookPen,
     Plus,
     Tags,
@@ -12,7 +13,7 @@ import {
 export default function AdminDashboardPage() {
     return (
         <main className="min-h-screen bg-[#F8F4EF] px-6 py-12">
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto max-w-6xl">
 
                 {/* Brand */}
                 <Link
@@ -28,9 +29,9 @@ export default function AdminDashboardPage() {
 
                 {/* Header */}
 
-                <header className="mt-8 mb-14 relative">
+                <header className="relative mt-8 mb-14">
 
-                    <div className="absolute -right-6 -top-8 opacity-10 hidden md:block">
+                    <div className="absolute -top-8 -right-6 hidden opacity-10 md:block">
                         <Leaf
                             size={120}
                             className="text-[#71866A]"
@@ -120,7 +121,7 @@ export default function AdminDashboardPage() {
                         </p>
                     </div>
 
-                    <div className="grid gap-6 md:grid-cols-2">
+                    <div className="grid gap-6 md:grid-cols-3">
 
                         {/* Articles */}
 
@@ -181,6 +182,40 @@ export default function AdminDashboardPage() {
 
                             <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#71866A]">
                                 View Topics
+
+                                <ArrowRight
+                                    size={16}
+                                    className="transition group-hover:translate-x-1"
+                                />
+                            </div>
+
+                        </Link>
+
+                        {/* Comments */}
+
+                        <Link
+                            href="/admin/comments"
+                            className="group rounded-3xl border border-[#ECE3DB] bg-[#FFFDFB] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D7C7B9] hover:shadow-lg"
+                        >
+
+                            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#F8EFE5]">
+                                <MessageCircle
+                                    size={26}
+                                    className="text-[#7A5A45]"
+                                />
+                            </div>
+
+                            <h2 className="font-serif text-2xl text-[#4D3C35]">
+                                Comments
+                            </h2>
+
+                            <p className="mt-4 leading-7 text-[#80756D]">
+                                Read conversations, explore community reflections,
+                                and moderate discussions across every article.
+                            </p>
+
+                            <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#7A5A45]">
+                                View Comments
 
                                 <ArrowRight
                                     size={16}

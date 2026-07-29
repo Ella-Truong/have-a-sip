@@ -3,11 +3,11 @@
  */
 import { TopicRepository } from "../repositories/topic.repository";
 import { 
-    Topic,
     CreateTopicData,
     CreateTopicInput,
     UpdateTopicInput,
     UpdateTopicData,
+    TopicSummary,
  } from "../types/topic";
 
 import { generateSlug } from "@/lib/helper";
@@ -31,7 +31,7 @@ export class TopicService{
     /**
      * Get all topics
      */
-    async getTopics(): Promise<Topic[]>{
+    async getTopics(): Promise<TopicSummary[]>{
         return this.topicRepository.findTopics()
     }
 
@@ -41,7 +41,7 @@ export class TopicService{
      */
     async getTopicById(
         id: string
-    ): Promise<Topic | null>{
+    ): Promise<TopicSummary | null>{
         return this.topicRepository.findTopicById(id)
     }
 
@@ -52,7 +52,7 @@ export class TopicService{
      */
     async createTopic(
         input: CreateTopicInput
-    ): Promise<Topic>{
+    ): Promise<TopicSummary>{
         const data: CreateTopicData = {
             ...input,
             slug: generateSlug(input.name)
@@ -66,7 +66,7 @@ export class TopicService{
     async updateTopic(
         id: string,
         input: UpdateTopicInput
-    ): Promise<Topic>{
+    ): Promise<TopicSummary>{
         const data: UpdateTopicData = {...input}
 
         if (input.name){

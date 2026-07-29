@@ -9,7 +9,7 @@ const articleService = new ArticleService();
 export async function GET(request: NextRequest){
     try {
         //make request.url a URL object --> use URL attributes like searchParams, pathName, ...
-        const { searchParams } = new URL(request.url);
+        const { searchParams } = request.nextUrl;
 
         const query = {
             page: searchParams.get("page") ?? undefined,

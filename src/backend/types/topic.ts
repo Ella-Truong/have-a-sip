@@ -1,9 +1,8 @@
-export interface Topic {
+export interface TopicSummary {
     id: string;
     name: string;
     slug: string;
 }
-
 export interface CreateTopicInput {
     name: string;
 }

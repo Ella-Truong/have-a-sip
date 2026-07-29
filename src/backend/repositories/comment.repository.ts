@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { GetCommentQuery } from "../validations/comment.validation";
 
 import {
+    AdminCommentSummary,
     CommentSummary, 
     CreateCommentData,
     UpdateCommentInput,
@@ -11,11 +12,11 @@ import {
 export class CommentRepository {
     /**
      * for Admin only
-     * find comments from multiple different params (articleId, cupName)
+     * find comments from multiple different params (articleId, cupName, topicId, sipType)
      */
     async findComments(
         query: GetCommentQuery
-    ): Promise<CommentSummary[]>{
+    ): Promise<AdminCommentSummary[]>{
         return prisma.comment.findMany({
             where: {
                 ...(query.articleId && {
@@ -23,6 +24,14 @@ export class CommentRepository {
                 }),
                 ...(query.cupName && {
                     cupName: query.cupName
+                }),
+                ...(query.topicId &&{
+                    article: {
+                        topicId: query.topicId
+                    },
+                }),
+                ...(query.sipType && {
+                    sipType: query.sipType
                 })
             },
             orderBy: {
@@ -33,30 +42,50 @@ export class CommentRepository {
                     select: {
                         id: true,
                         title: true,
-                        slug: true
+                        slug: true,
+                        topic:{
+                            select: {
+                                id: true,
+                                name: true
+                            }
+                        }
                     }
                 }
             }
         })
     }
 
-
     /**
      * for Readers 
      * find comments by article ID
      */
     async findCommentsByArticleId(
-        articleId: string
-    ): Promise<CommentSummary[]>{
-        return prisma.comment.findMany({
-            where: {
-                articleId,
+    articleId: string
+): Promise<AdminCommentSummary[]> {
+    return prisma.comment.findMany({
+        where: {
+            articleId,
+        },
+        include: {
+            article: {
+                select: {
+                    id: true,
+                    title: true,
+                    slug: true,
+                    topic: {
+                        select: {
+                            id: true,
+                            name: true,
+                        },
+                    },
+                },
             },
-            orderBy: {
-                createdAt: "asc"
-            }
-        })
-    }
+        },
+        orderBy: {
+            createdAt: "asc",
+        },
+    });
+}
 
     /**
      * create comment

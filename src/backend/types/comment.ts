@@ -20,3 +20,14 @@ export interface UpdateCommentInput {
     content: string;
 }
 
+export interface AdminCommentSummary extends CommentSummary {
+    article: {
+        id: string;
+        title: string;
+        slug: string;
+        topic: {
+            id: string;
+            name: string;
+        };
+    };
+}

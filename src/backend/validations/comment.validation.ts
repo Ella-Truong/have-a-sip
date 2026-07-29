@@ -31,12 +31,11 @@ export const updateCommentSchema = z.object({
 export type UpdateCommentBody = z.infer<typeof updateCommentSchema>
 
 
-export const getArticleCommentsSchema = z.object({
-    articleId: z.string().min(1)
-})
-
 export const getCommentSchema = z.object ({
     articleId: z.string().optional(),
     cupName: z.string().trim().optional(),
+    topicId: z.string().trim().optional(),
+    sipType: z.enum(SipType).optional()
+
 })
 export type GetCommentQuery = z.infer<typeof getCommentSchema>

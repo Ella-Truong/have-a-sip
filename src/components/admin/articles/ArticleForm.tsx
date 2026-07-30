@@ -26,28 +26,17 @@ export default function ArticleForm({
     // If article does not exist -> Create mode
     const isEditing = !!article;
 
-    const [title, setTitle] = useState(
-        article?.title ?? ""
-    );
+    const [title, setTitle] = useState(article?.title ?? "");
 
-    const [excerpt, setExcerpt] = useState(
-        article?.excerpt ?? ""
-    );
+    const [excerpt, setExcerpt] = useState(article?.excerpt ?? "");
 
-    const [topicId, setTopicId] = useState(
-        article?.topicId ?? ""
-    );
+    const [topicId, setTopicId] = useState(article?.topicId ?? "");
 
-    const [content, setContent] = useState(
-        article?.content ?? ""
-    );
+    const [content, setContent] = useState(article?.content ?? "");
 
-    const [published, setPublished] = useState(
-        article?.published ?? false
-    );
+    const [published, setPublished] = useState(article?.published ?? false);
 
-    const [isSubmitting, setIsSubmitting] =
-        useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [error, setError] = useState("");
 
@@ -271,7 +260,6 @@ export default function ArticleForm({
                                 ? "Publish Article"
                                 : "Save Draft"}
                     </button>
-
                 </div>
             </div>
         </form>

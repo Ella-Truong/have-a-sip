@@ -120,7 +120,10 @@ export class ArticleRepository {
      */
     async createArticle(data: CreateArticleData){
         return prisma.article.create({
-            data
+            data:{
+                ...data,
+                publishedAt: data.published ? new Date() : null
+            }
         });
     }
 

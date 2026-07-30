@@ -28,7 +28,6 @@ export default function AdminDashboardPage() {
                 </Link>
 
                 {/* Header */}
-
                 <header className="relative mt-8 mb-14">
 
                     <div className="absolute -top-8 -right-6 hidden opacity-10 md:block">

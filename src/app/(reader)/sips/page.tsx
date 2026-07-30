@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArticleService } from "@/backend/services/article.service";
 import { TopicService } from "@/backend/services/topic.service";
 
-import TopicsSidebar from "@/components/reader/TopicsSidebar";
+import TopicsSidebar from "@/components/reader/topics/TopicsSidebar";
 
 const articleService = new ArticleService();
 const topicService = new TopicService();

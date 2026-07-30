@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { JoinConversation } from "@/components/reader/JoinConversation";
+import { JoinConversation } from "@/components/reader/comments/JoinConversation";
 
 import { ArticleService } from "@/backend/services/article.service";
 

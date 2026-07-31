@@ -37,22 +37,22 @@ export class ArticleRepository {
             })
         }
 
-        const articles = await prisma.article.findMany({
-            where,
-            include: {
-                topic: true
-            },
-            orderBy: {
-                publishedAt: "desc"
-            },
-            skip,
-            take: limit,
-        })
-
-        //count all published articles
-        const totalItems = await prisma.article.count({
-            where,
-        });
+        const [articles, totalItems] = await Promise.all([
+            prisma.article.findMany({
+                where,
+                include: {
+                    topic: true,
+                },
+                orderBy: {
+                    publishedAt: "desc",
+                },
+                skip,
+                take: limit,
+            }),
+            prisma.article.count({
+                where,
+            })
+        ])
 
         return {
             articles,

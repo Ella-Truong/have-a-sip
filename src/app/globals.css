@@ -147,6 +147,46 @@
   --animate-fade-down: fadeDown 700ms ease-out both;
 }
 
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes sip {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-10deg);
+    }
+
+    35% {
+        transform: rotate(-15deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-sip {
+    transform-origin: bottom center;
+    animation: sip 6s ease-in-out infinite;
+}
+
+/*-----------------------------------------*/
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -384,3 +424,4 @@
   -ms-overflow-style: none; /* IE & Edge */
   scrollbar-width: none; /* Firefox */
 }
+

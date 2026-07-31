@@ -24,7 +24,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-import { Trash2 } from "lucide-react";
+import DeleteCommentButton from "./DeleteCommentButton";
 
 import type { AdminCommentSummary } from "@/backend/types/comment";
 import type { TopicSummary } from "@/backend/types/topic";
@@ -248,9 +248,13 @@ export function CommentTable() {
                                 </TableCell>
 
                                 <TableCell className="text-right">
-                                    <button className="text-[#B45C5C] transition hover:text-red-700">
-                                        <Trash2 size={16} />
-                                    </button>
+                                    <DeleteCommentButton
+                                        commentId={comment.id}
+                                        onDelete = {() => 
+                                            setComments((prev) => 
+                                            prev.filter((c)=> c.id !== comment.id))
+                                        }
+                                    />
                                 </TableCell>
                             </TableRow>
                         ))}

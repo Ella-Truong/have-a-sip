@@ -1,8 +1,9 @@
-import Link from "next/link";
-
 import { ArticleService } from "@/backend/services/article.service";
 import { TopicService } from "@/backend/services/topic.service";
 
+import ArticleArchive from "@/components/reader/sips/ArticleArchive";
+import SipsHero from "@/components/reader/sips/SipsHero";
+import SipsPagination from "@/components/reader/sips/SipsPagination";
 import TopicsSidebar from "@/components/reader/topics/TopicsSidebar";
 
 const articleService = new ArticleService();
@@ -20,12 +21,8 @@ export default async function SipsPage({
 }: SipsPageProps) {
     const { page: pageParam, topic } = await searchParams;
 
-    const page = Math.max(
-        1,
-        Number(pageParam) || 1
-    );
+    const page = Math.max(1, Number(pageParam) || 1);
 
-    // Fetch articles and topics at the same time
     const [
         { data: articles, pagination },
         topics,
@@ -33,145 +30,39 @@ export default async function SipsPage({
         articleService.getArticles({
             page,
             limit: 5,
-            topic
+            topic,
         }),
         topicService.getTopics(),
     ]);
 
     return (
         <main className="relative overflow-visible">
-            {/* Background Decorations */}
+            {/* Background */}
             <div className="pointer-events-none absolute inset-0 overflow-visible">
-
-                <div className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#F5E2EB]/50 blur-xl" />
-
-                <div className="absolute right-0 top-[35rem] h-96 w-96 rounded-full bg-[#DDEDD8]/50 blur-2xl" />
-
-                <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#F7E8D5]/50 blur-2xl" />
-
+                <div className="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#F5E2EB]/40 blur-xl" />
+                <div className="absolute right-0 top-[34rem] h-96 w-96 rounded-full bg-[#DDEDD8]/40 blur-2xl" />
+                <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[#F7E8D5]/40 blur-2xl" />
             </div>
 
-            <div className="mx-auto max-w-6xl px-6 py-16 animate-fade-down">
-                {/* Header */}
-                <section className="mb-12">
-                    <p className="mb-4 text-xs font-medium text-[#71866A]">
-                        ☕ Have a Sip
-                    </p>
+            <div className="relative mx-auto max-w-6xl animate-fade-down px-6 py-20">
+                <SipsHero />
 
-                    <h1 className="text-4xl font-semibold text-[#3F3A37]">
-                        Sips
-                    </h1>
-
-                    <p className="mt-4 max-w-xl leading-7 text-[#817873]">
-                        Small notes from things I learn,
-                        build, debug, and occasionally
-                        overthink.
-                    </p>
-                </section>
-
-                {/* Main Layout */}
-                <div className="grid gap-10 lg:grid-cols-[1fr_260px]">
-                    {/* Left Side — Articles */}
+                <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_220px]">
                     <section>
-                        {articles.length > 0 ? (
-                            <div className="space-y-4">
-                                {articles.map((article) => (
-                                    <Link
-                                        key={article.id}
-                                        href={`/sips/${article.slug}`}
-                                        className="block rounded-2xl border border-[#E7E0DA] bg-[#fffdf8]/80 p-6 transition hover:-translate-y-0.5 hover:border-[#C9D5C3] hover:shadow-sm"
-                                    >
-                                        {/* Meta */}
-                                        <div className="mb-3 flex items-center gap-2 text-xs text-[#9A918B]">
-                                            <span>
-                                                {article.topic.name}
-                                            </span>
-
-                                            <span>·</span>
-
-                                            <span>
-                                                {article.readingTime} min read
-                                            </span>
-                                        </div>
-
-                                        {/* Title */}
-                                        <h2 className="text-xl font-semibold text-[#3F3A37]">
-                                            {article.title}
-                                        </h2>
-
-                                        {/* Excerpt */}
-                                        {article.excerpt && (
-                                            <p className="mt-2 line-clamp-2 leading-6 text-[#817873]">
-                                                {article.excerpt}
-                                            </p>
-                                        )}
-
-                                        {/* Date */}
-                                        {article.publishedAt && (
-                                            <p className="mt-4 text-xs text-[#A09892]">
-                                                {article.publishedAt.toLocaleDateString(
-                                                    "en-US",
-                                                    {
-                                                        month: "short",
-                                                        day: "numeric",
-                                                        year: "numeric",
-                                                    }
-                                                )}
-                                            </p>
-                                        )}
-                                    </Link>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="rounded-2xl border border-[#E7E0DA] bg-white px-6 py-12 text-center">
-                                <p className="text-[#817873]">
-                                    No sips yet. More thoughts are brewing. ☕
-                                </p>
-                            </div>
-                        )}
-
-                        {/* Pagination */}
-                        {pagination.totalPages > 1 && (
-                            <div className="mt-10 flex items-center justify-between">
-
-                                {/* Previous */}
-                                {pagination.hasPreviousPage ? (
-                                    <Link
-                                        href={`/sips?page=${page - 1}`}
-                                        className="rounded-xl border border-[#DDD5CE] bg-white px-4 py-2 text-sm font-medium text-[#4F4945] transition hover:bg-[#F4EFEA]"
-                                    >
-                                        ← Previous
-                                    </Link>
-                                ) : (
-                                    <div />
-                                )}
-
-                                {/* Current Page */}
-                                <p className="text-sm text-[#817873]">
-                                    Page {page} of{" "}
-                                    {pagination.totalPages}
-                                </p>
-
-                                {/* Next */}
-                                {pagination.hasNextPage ? (
-                                    <Link
-                                        href={`/sips?page=${page + 1}`}
-                                        className="rounded-xl border border-[#DDD5CE] bg-white px-4 py-2 text-sm font-medium text-[#4F4945] transition hover:bg-[#F4EFEA]"
-                                    >
-                                        Next →
-                                    </Link>
-                                ) : (
-                                    <div />
-                                )}
-                            </div>
-                        )}
+                        <ArticleArchive articles={articles} />
+                        <SipsPagination
+                            page={page}
+                            topic={topic}
+                            pagination={pagination}
+                        />
                     </section>
 
-                    {/* Right Side — Topics */}
-                    <aside>
-                        <TopicsSidebar topics={topics} currentTopic={topic} />
+                    <aside className="sticky top-28 h-fit">
+                        <TopicsSidebar
+                            topics={topics}
+                            currentTopic={topic}
+                        />
                     </aside>
-
                 </div>
             </div>
         </main>

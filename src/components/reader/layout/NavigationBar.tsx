@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Coffee } from "lucide-react";
 
+import { parisienne } from "@/lib/fonts";
+
 import NavigationLinks from "./NavigationLinks";
 
 export default function NavigationBar() {
@@ -21,18 +23,18 @@ export default function NavigationBar() {
             <nav className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5">
                 <Link
                     href="/"
-                    className="flex items-center gap-4 transition-opacity hover:opacity-90"
+                    className="group flex items-center gap-4 transition-opacity hover:opacity-90"
                 >
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#F5EEE8] text-[#7B6653] shadow-sm">
-                        <Coffee className="h-8 w-8" strokeWidth={1.8} />
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F5EEE8] text-[#7B6653] transition-transform duration-200 group-hover:rotate-6 shadow-sm">
+                        <Coffee className="h-7 w-7" strokeWidth={1.7} />
                     </div>
 
                     <div>
-                        <h1 className="font-serif text-2xl font-semibold tracking-tight text-[#3F3A37]">
+                        <h1 className={`${parisienne.className} text-[2.15rem] leading-none text-[#3F3A37]`}>
                             Have a Sip
                         </h1>
 
-                        <p className="text-xs uppercase tracking-[0.2em] text-[#9A908A]">
+                        <p className="mt-0.5 text-[11px] uppercase tracking-[0.24em] text-[#9A908A]">
                             Slow Engineering Journal
                         </p>
                     </div>

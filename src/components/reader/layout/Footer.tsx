@@ -17,7 +17,7 @@ export default function Footer() {
             </div>
 
             <div className="relative z-10 border-t border-[#ECE4DD]/70">
-                <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-sm text-[#9C938D] md:flex-row md:items-center md:justify-between">
+                <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-sm text-[#9C938D] tracking-[0.15em] md:flex-row md:items-center md:justify-between">
                     <p>
                         © 2026 Have a Sip. Crafted with coffee and curiosity.
                     </p>

@@ -47,7 +47,7 @@ export default async function SipsPage({
             <div className="relative mx-auto max-w-6xl animate-fade-down px-6 py-20">
                 <SipsHero />
 
-                <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_220px]">
+                <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_280px]">
                     <section>
                         <ArticleArchive articles={articles} />
                         <SipsPagination

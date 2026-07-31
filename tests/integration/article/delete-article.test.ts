@@ -6,6 +6,11 @@ import { prisma } from "@/lib/prisma";
 import { topicFixture } from "../../fixtures/topic.fixture";
 import { redisArticleFixture } from "../../fixtures/article.fixture";
 
+import { revalidatePath } from "next/cache";
+jest.mock("next/cache", () => ({
+    revalidatePath: jest.fn(),
+}))
+
 //test suite
 describe("DELETE api/admin/articles/[id]", () => {
     //test #1
@@ -42,6 +47,11 @@ describe("DELETE api/admin/articles/[id]", () => {
         const result = await response.json();
 
         expect(result.message).toBe("Article deleted successfully.")
+        
+        expect(revalidatePath).toHaveBeenCalledWith("/")
+        expect(revalidatePath).toHaveBeenCalledWith("/sips")
+        expect(revalidatePath).toHaveBeenCalledWith(`/articles/${article.slug}`)
+
 
         //Verify the database
         const deletedArticle = await prisma.article.findUnique({

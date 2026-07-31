@@ -9,6 +9,12 @@ import { dockerArticleFixture } from "../../fixtures/article.fixture";
 
 import { generateSlug } from "@/lib/helper";
 
+import { revalidatePath } from "next/cache";
+
+jest.mock("next/cache", () => ({
+    revalidatePath: jest.fn(),
+}))
+
 //test suite
 describe("PATCH api/admin/articles/[id]", () => {
     //test #1
@@ -54,6 +60,11 @@ describe("PATCH api/admin/articles/[id]", () => {
 
         expect(result.published).toBe(true);
         expect(result.publishedAt).not.toBeNull();
+
+        expect(revalidatePath).toHaveBeenCalledWith("/admin/articles");
+        expect(revalidatePath).toHaveBeenCalledWith("/");
+        expect(revalidatePath).toHaveBeenCalledWith("/sips");
+        expect(revalidatePath).toHaveBeenCalledWith(`/articles/${article.slug}`);                  
         
         // Verify database
         const updatedArticle = await prisma.article.findUnique({
@@ -65,6 +76,7 @@ describe("PATCH api/admin/articles/[id]", () => {
         expect(updatedArticle).not.toBeNull();
         expect(updatedArticle?.published).toBe(true);
         expect(updatedArticle?.publishedAt).not.toBeNull();
+        
     });
     
     // test #2

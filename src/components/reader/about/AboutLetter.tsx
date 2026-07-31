@@ -49,7 +49,6 @@ export default function AboutLetter() {
                     </h2>
 
                     <div className="mt-5 space-y-4 text-[16px] leading-8 text-[#5E5752]">
-
                         <p>
                             {`If you're here,
                             we're probably learning together.`}

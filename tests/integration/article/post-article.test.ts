@@ -6,6 +6,11 @@ import { NextRequest } from "next/server";
 import { prismaArticleFixture } from "../../fixtures/article.fixture";
 import { topicFixture } from "../../fixtures/topic.fixture";
 
+import { revalidatePath } from "next/cache";
+jest.mock("next/cache", () => ({
+    revalidatePath: jest.fn(),
+}))
+
 //test suite 
 describe("POST /api/admin/articles", () => {
     //test #1
@@ -42,6 +47,10 @@ describe("POST /api/admin/articles", () => {
         expect(article.excerpt).toBe(prismaArticleFixture.excerpt);
         expect(article.content).toBe(prismaArticleFixture.content);
         expect(article.topicId).toBe(topic.id);
+
+        expect(revalidatePath).toHaveBeenCalledWith("/");
+        expect(revalidatePath).toHaveBeenCalledWith("/sips");
+        expect(revalidatePath).toHaveBeenCalledWith(`/articles/${article.slug}`);
         
         // Business logic
         expect(article.slug).toBe("learning-prisma");

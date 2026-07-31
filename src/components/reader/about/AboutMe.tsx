@@ -7,28 +7,25 @@ export default function AboutMe() {
     return (
         <section className="grid items-center gap-20 lg:grid-cols-[0.9fr_1.1fr]">
             {/* Photo */}
-
             <div className="flex justify-center">
-    <div className="relative h-70 w-70">
-        <div className="absolute inset-0 rounded-full bg-[#F5E2EB]/40 blur-3xl" />
+            <div className="relative h-70 w-70">
+                <div className="absolute inset-0 rounded-full bg-[#F5E2EB]/40 blur-3xl" />
+                    <CircularText text="ELLA TRUONG • HAVE A SIP • SOFTWARE ENGINEER • " />
 
-        <CircularText text="ELLA TRUONG • HAVE A SIP • SOFTWARE ENGINEER • " />
-
-        <div className="absolute inset-5 overflow-hidden rounded-full border-4 border-white shadow-[0_20px_60px_rgba(70,55,45,0.06)] animate-sway">
-            <Image
-                src="/ella.jpg"
-                alt="Ella Truong"
-                fill
-                sizes="320px"
-                className="object-cover object-[90%_center]"
-                priority
-            />
-        </div>
-    </div>
-</div>
+                    <div className="absolute inset-5 overflow-hidden rounded-full border-4 border-white shadow-[0_20px_60px_rgba(70,55,45,0.06)] animate-sway">
+                        <Image
+                            src="/ella.jpg"
+                            alt="Ella Truong"
+                            fill
+                            sizes="320px"
+                            className="object-cover object-[90%_center]"
+                            priority
+                        />
+                    </div>
+                </div>
+            </div>
 
             {/* Content */}
-
             <div>
                 <p className="mb-4 text-xs uppercase tracking-[0.35em] text-[#9C938D]">
                     About Me

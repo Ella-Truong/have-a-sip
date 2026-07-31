@@ -2,6 +2,7 @@ import { ArticleService } from "@/backend/services/article.service";
 import { TopicService } from "@/backend/services/topic.service";
 
 import ArticleArchive from "@/components/reader/sips/ArticleArchive";
+import OnMyDesk from "@/components/reader/sips/OnMydesk";
 import SipsHero from "@/components/reader/sips/SipsHero";
 import SipsPagination from "@/components/reader/sips/SipsPagination";
 import TopicsSidebar from "@/components/reader/topics/TopicsSidebar";
@@ -57,7 +58,8 @@ export default async function SipsPage({
                         />
                     </section>
 
-                    <aside className="sticky top-28 h-fit">
+                    <aside className="sticky top-28 h-fit space-y-8">
+                        <OnMyDesk/>
                         <TopicsSidebar
                             topics={topics}
                             currentTopic={topic}

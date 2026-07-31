@@ -89,16 +89,33 @@
 
 @keyframes sway {
   0%, 100% {
-    transform: rotate(-8deg);
+    transform: rotate(-2deg);
   }
-
   50% {
-    transform: rotate(8deg);
+    transform: rotate(2deg);
   }
 }
 
-@theme {
-  --animate-sway: sway 4s ease-in-out infinite;
+@keyframes blink {
+  0%, 46%, 50%, 100% {
+    opacity: 1;
+  }
+
+  48% {
+    opacity: 0.92;
+  }
+
+  49% {
+    opacity: 0.98;
+  }
+}
+
+.animate-sway {
+  animation: sway 6s ease-in-out infinite;
+}
+
+.animate-blink {
+  animation: blink 8s infinite;
 }
 
 @keyframes fadeUp {
@@ -183,6 +200,20 @@
 .animate-sip {
     transform-origin: bottom center;
     animation: sip 6s ease-in-out infinite;
+}
+
+
+@keyframes float-sway {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+.animate-float-sway {
+    animation: float-sway 7s ease-in-out infinite;
 }
 
 /*-----------------------------------------*/

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Coffee, CodeXml, Sprout } from "lucide-react";
 import { parisienne } from "@/lib/fonts";
+import CircularText from "./CircularText";
 
 export default function AboutMe() {
     return (
@@ -8,20 +9,23 @@ export default function AboutMe() {
             {/* Photo */}
 
             <div className="flex justify-center">
-                <div className="relative">
-                    <div className="absolute inset-0 rounded-full bg-[#F5E2EB]/40 blur-3xl" />
+    <div className="relative h-70 w-70">
+        <div className="absolute inset-0 rounded-full bg-[#F5E2EB]/40 blur-3xl" />
 
-                    <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white shadow-[0_20px_60px_rgba(70,55,45,0.06)]">
-                        <Image
-                            src="/me.jpg" // Replace with your photo
-                            alt="Ella Truong"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-                </div>
-            </div>
+        <CircularText text="ELLA TRUONG • HAVE A SIP • SOFTWARE ENGINEER • " />
+
+        <div className="absolute inset-5 overflow-hidden rounded-full border-4 border-white shadow-[0_20px_60px_rgba(70,55,45,0.06)] animate-sway">
+            <Image
+                src="/ella.jpg"
+                alt="Ella Truong"
+                fill
+                sizes="320px"
+                className="object-cover object-[90%_center]"
+                priority
+            />
+        </div>
+    </div>
+</div>
 
             {/* Content */}
 

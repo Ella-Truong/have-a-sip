@@ -31,7 +31,8 @@ export default function AboutMe() {
                 </p>
 
                 <h2 className={`${parisienne.className} text-6xl font-medium tracking-wide text-[#3F3A37] md:text-7xl`}>
-                    {`Hi, I'm Ella`}
+                    {`Hi, I'm`}
+                    <span className="text-[#a67c52]">{" "}Ella</span>
                 </h2>
 
                 <p className="mt-8 text-lg leading-9 text-[#5B5551]">
@@ -42,10 +43,10 @@ export default function AboutMe() {
                 </p>
 
                 <p className="mt-6 text-lg leading-9 text-[#5B5551]">
-                    I created{" "}
-                    <span className="font-serif text-[#3F3A37]">
-                        Have a Sip
-                    </span>{" "}
+                    I created
+                    <span className={`${parisienne.className} text-3xl text-[#a67c52]`}>
+                        {" "}Have a Sip{" "}
+                    </span>
                     {`as a place to document my journey, share debugging stories,
                     and reflect on the lessons I discover along the way. It's less
                     about having all the answers, and more about learning one step

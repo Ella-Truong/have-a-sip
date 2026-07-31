@@ -74,7 +74,10 @@ export function JoinConversation({
                     {identity ? (
                         <>
                             <h2 className="text-lg font-medium text-[#4E4B47]">
-                                Welcome back, {identity.cupName}.
+                                Welcome back,{" "}
+                                <span className="text-[#a67c52]">
+                                    {identity.cupName}
+                                </span>
                             </h2>
 
                             <p className="text-sm text-[#817873]">

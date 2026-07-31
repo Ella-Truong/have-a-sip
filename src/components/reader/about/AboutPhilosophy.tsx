@@ -11,9 +11,9 @@ export default function AboutPhilosophy() {
             </div>
 
             <h2 className="font-serif text-4xl font-medium text-[#3F3A37]">
-                Why{" "}
-                <span className={parisienne.className}>
-                    Have a Sip?
+                Why
+                <span className={`${parisienne.className} text-[#a67c52]`}>
+                    {" "}Have a Sip?
                 </span>
             </h2>
 

@@ -11,7 +11,7 @@ export default function AboutHero() {
 
                 <h1 className="font-serif text-5xl font-medium leading-tight text-[#3F3A37]">
                     About{" "}
-                    <span className={parisienne.className}>
+                    <span className={`${parisienne.className} text-5xl text-[#a67c52]`}>
                         Have a Sip
                     </span>
                 </h1>
@@ -31,9 +31,9 @@ export default function AboutHero() {
                 <div className="space-y-8 text-lg leading-9 text-[#5B5551]">
                     <p>
                         <span
-                            className={`${parisienne.className} text-3xl text-[#3F3A37]`}
+                            className={`${parisienne.className} text-3xl text-[#a67c52]`}
                         >
-                            Have a Sip
+                            Have a Sip{" "}
                         </span>{" "}
                         {`began as a quiet habit of writing down the lessons I
                         didn't want to forget.`}

@@ -26,7 +26,7 @@ export class ArticleRepository {
         articles: ArticleSummary[];
         totalItems: number;
     }> {
-        const skip = (page-1)*limit;
+        const skip = (page - 1) * limit;
 
         const where = {
             published: true,
@@ -133,17 +133,7 @@ export class ArticleRepository {
     async updateArticle(
         id: string,
         input: UpdateArticleData
-    ){
-        const article = await prisma.article.findUnique({
-            where: {
-                id,
-            }
-        });
-
-        if (!article){
-            throw new Error("Article not found")
-        };
-        
+    ){  
         return prisma.article.update({
             where: {
                 id,

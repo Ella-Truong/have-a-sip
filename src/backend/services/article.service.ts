@@ -99,7 +99,10 @@ export class ArticleService {
         input: UpdateArticleInput,
     ): Promise<ArticleDetail>{
         const article = await this.articleRepository.findArticleById(id);
-
+        
+        if (!article){
+            throw new Error("Article not found")
+        }
         const data: UpdateArticleData = { ...input};
 
         if (input.title) {
@@ -125,6 +128,6 @@ export class ArticleService {
     async deleteArticle(
         id: string 
     ): Promise<Article>{
-        return await this.articleRepository.deleteArticle(id);
+        return this.articleRepository.deleteArticle(id);
     }
 }

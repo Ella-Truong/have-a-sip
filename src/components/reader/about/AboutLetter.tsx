@@ -1,56 +1,86 @@
+import { parisienne } from "@/lib/fonts";
+
 export default function AboutLetter() {
     return (
-        <aside className="animate-fade-up">
+        <aside className="animate-fade-up flex justify-center">
 
-            <div className="relative overflow-hidden rounded-[2rem] p-10 backdrop-blur-md ring-1 ring-white/70 shadow-[0_20px_60px_rgba(70,55,45,0.06)]">
+            <div className="relative w-full max-w-[430px] overflow-hidden rounded-sm border border-[#E6DCCF] bg-[#FCFAF5] px-8 py-8 shadow-[0_16px_36px_rgba(72,58,48,0.08)]">
 
+                {/* Handmade paper grain */}
                 <div
-                    className="absolute inset-0 z-0 bg-cover bg-center"
+                    className="pointer-events-none absolute inset-0 opacity-[0.03]"
                     style={{
-                        backgroundImage: "url('/coffeebean.jpg')",
+                        backgroundImage:
+                            "radial-gradient(circle at 1px 1px,#A67C52 0.5px,transparent 0.5px)",
+                        backgroundSize: "18px 18px",
                     }}
                 />
 
-                <div className="absolute inset-0 z-0 bg-[#FAF8F5]/50 backdrop-blur-[5px]" />
+                {/* Soft edge vignette */}
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_28px_rgba(166,124,82,0.04)]" />
 
-                <div className="relative z-10">
+                {/* Watermark */}
+                <span
+                    className={`
+                        ${parisienne.className}
+                        pointer-events-none
+                        absolute
+                        bottom-4
+                        right-4
+                        -rotate-[8deg]
+                        text-[4.5rem]
+                        text-[#A67C52]/5
+                        select-none
+                    `}
+                >
+                    Letter
+                </span>
 
-                    <p className="text-xs uppercase tracking-[0.35em] text-[#9C938D]">
+                <div className="relative">
+
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-[#A59A91]">
                         A Letter
                     </p>
 
-                    <p className="mt-8 font-serif text-3xl italic leading-relaxed text-[#5E5752]">
-                        Welcome.
-                    </p>
+                    <div className="mt-3 h-px w-12 bg-[#DDD0C3]" />
 
-                    <div className="mt-8 space-y-6 leading-8 text-[#6D6661]">
+                    <h2 className="mt-5 font-serif text-3xl italic text-[#49433F]">
+                        Dear friend,
+                    </h2>
+
+                    <div className="mt-5 space-y-4 text-[16px] leading-8 text-[#5E5752]">
 
                         <p>
-                            {`If you're reading this, you're probably learning too.`}
+                            {`If you're here,
+                            we're probably learning together.`}
                         </p>
 
                         <p>
-                            I hope these posts feel less like lectures and more like
-                            conversations over coffee—honest notes from someone who is
-                            still learning every day.
+                            I hope these pages feel less like tutorials
+                            and more like quiet conversations over coffee.
+                            Stay curious, and enjoy your sip.
                         </p>
-
                         <p>
-                            Take what helps.
+                            Stay curious.
                             <br />
-                            {`Leave what doesn't.`}
-                            <br />
-                            And enjoy your stay.
+                            Enjoy your sip.
                         </p>
 
                     </div>
-
-                    <div className="mt-12 h-px bg-[#ECE4DD]" />
-
-                    <p className="mt-8 text-right font-serif italic text-[#8A817B]">
-                        — Ella
+                    <div className="mt-8 text-right">
+                        <p
+                        className={`
+                            ${parisienne.className}
+                            text-4xl
+                            text-[#8B6546]
+                        `}
+                    >
+                        Ella
                     </p>
-
+                    <p className="mt-1 text-[11px] uppercase tracking-[0.28em] text-[#A59A91]">
+                        HAVE A SIP
+                    </p>
+                    </div>
                 </div>
 
             </div>

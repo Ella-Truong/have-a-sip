@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { TopicService } from "@/backend/services/topic.service";
 import { createTopicSchema } from "@/backend/validations/topic.validation";
 import { revalidatePath } from "next/cache";
+import { ZodError } from "zod";
 
 const topicService = new TopicService;
 
@@ -28,7 +29,12 @@ export async function POST(request: NextRequest){
         return NextResponse.json(topic, {status: 201})
 
     }catch(error){
-        console.log(error)
+        if (error instanceof ZodError){
+            return NextResponse.json(
+                { message: "Invalid request body." },
+                { status: 400 }
+            )
+        }
 
         return NextResponse.json(
             {message: "Something went wrong"},

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:e2e": "playwright test",
     "test: watch": "jest --watch",
     "test": "dotenv -e .env.test -- jest",
     "test:studio": "dotenv -e .env.test -- prisma studio",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^30.4.1",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4",
     "@types/bcrypt": "^6.0.0",
     "@types/jest": "^30.0.0",

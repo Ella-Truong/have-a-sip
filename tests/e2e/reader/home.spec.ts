@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Reader Homepage", () => {
-    test("should display hero section", async ({ page }) => {
+    test("Should display hero section", async ({ page }) => {
         await page.goto("/");
 
         // Browser metadata
@@ -30,7 +30,7 @@ test.describe("Reader Homepage", () => {
         ).toBeVisible();
     });
 
-    test("should display latest articles section", async ({ page }) => {
+    test("Should display latest articles section", async ({ page }) => {
         await page.goto("/");
 
         await expect(
@@ -40,7 +40,7 @@ test.describe("Reader Homepage", () => {
         ).toBeVisible();
     });
 
-    test("should display topics sidebar", async ({ page }) => {
+    test("Should display topics sidebar", async ({ page }) => {
         await page.goto("/");
 
         await expect(

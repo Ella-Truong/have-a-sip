@@ -34,8 +34,15 @@ test.describe("Reader Homepage", () => {
         await page.goto("/");
 
         await expect(
-            page.getByRole("heading", {
-                name: /Latest Articles/i,
+            page.getByRole("heading",{
+                level: 2,
+                name: /Recent Sips/i
+            })
+        ).toBeVisible();
+
+        await expect(
+            page.getByRole("link", {
+                name: /View all/i
             })
         ).toBeVisible();
     });
@@ -44,8 +51,9 @@ test.describe("Reader Homepage", () => {
         await page.goto("/");
 
         await expect(
-            page.getByRole("heading", {
-                name: /Topics/i,
+            page.getByRole("link", {
+                name: "All Sips",
+                exact: true,
             })
         ).toBeVisible();
     });

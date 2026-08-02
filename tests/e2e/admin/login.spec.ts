@@ -1,16 +1,12 @@
 import { test, expect } from "@playwright/test";
-
-const email = process.env.ADMIN_EMAIL;
-const password = process.env.ADMIN_PASSWORD;
-
-if (!email || !password){
-    throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD must be set.")
-} 
+import { admin } from "../utils/auth";
 
 test.describe("Admin Login", () => {
-    test("should display login page", async ({ page }) => {
-        await page.goto("/login");
+    test.beforeEach(async ({ page }) => {
+        await page.goto("/login")
+    })
 
+    test("should display login page", async ({ page }) => {
         await expect(page).toHaveTitle(/Have a Sip/i);
 
         await expect(
@@ -31,10 +27,8 @@ test.describe("Admin Login", () => {
     });
 
     test("should login successfully", async ({ page }) => {
-        await page.goto("/login");
-
-        await page.getByLabel("Email").fill(email);
-        await page.getByLabel("Password").fill(password);
+        await page.getByLabel("Email").fill(admin.email);
+        await page.getByLabel("Password").fill(admin.password);
 
         await page.getByRole("button", {
             name: /Sign In/i
@@ -44,9 +38,7 @@ test.describe("Admin Login", () => {
     });
 
     test("should reject invalid credentials", async ({ page }) => {
-        await page.goto("/login");
-
-        await page.getByLabel("Email").fill(email);
+        await page.getByLabel("Email").fill(admin.email);
         await page.getByLabel("Password").fill("wrong-password");
 
         await page.getByRole("button", {

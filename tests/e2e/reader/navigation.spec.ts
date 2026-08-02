@@ -16,13 +16,14 @@ test.describe("Reader Navigation", () => {
 
         await expect(
             page.getByRole("link", {
-                name: /Sips/i,
+                name: "Sips",
+                exact: true,
             })
         ).toBeVisible();
 
         await expect(
             page.getByRole("link", {
-                name: /About/i,
+                name: "About",
             })
         ).toBeVisible();
     });
@@ -42,7 +43,7 @@ test.describe("Reader Navigation", () => {
         await page.goto("/");
 
         await page.getByRole("link", {
-            name: /About/i,
+            name: "About",
         }).click();
 
         await expect(page).toHaveURL("/about");
@@ -52,7 +53,8 @@ test.describe("Reader Navigation", () => {
         await page.goto("/");
 
         await page.getByRole("link", {
-            name: /Sips/i,
+            name: "Sips",
+            exact: true,
         }).click();
 
         await expect(page).toHaveURL("/sips");

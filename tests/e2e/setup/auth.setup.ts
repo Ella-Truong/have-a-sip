@@ -5,9 +5,6 @@ import { admin } from "../utils/auth";
 
 const authFile = "playwright/.auth/admin.json";
 
-console.log(process.env.ADMIN_EMAIL);
-console.log(process.env.ADMIN_PASSWORD);
-
 authSetup("authenticate as admin", async ({ page }) => {
     await page.goto("/login");
 

@@ -50,10 +50,21 @@ export default defineConfig({
 
     },
     {
-      //before every Chromium test, load this authenticated browser state
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: "playwright/.auth/admin.json"},
-      //don't run Chromium until setup has finished
+      //public pages - no authentication required
+      name: "reader",
+      testMatch: /reader\/.*\.spec\.ts/,
+      use: {
+        ...devices["Desktop Chrome"]
+      },
+    },
+    { 
+      //admin pages - starts already authenticated
+      name: "admin",
+      testMatch: /admin\/.*\.spec\.ts/,
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: "playwright/.auth/admin.json"
+      },
       dependencies: ["setup"],
     },
 

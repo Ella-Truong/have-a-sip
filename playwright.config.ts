@@ -36,7 +36,7 @@ export default defineConfig({
    * npm run test:e2e -> Start Next.js -> wait until localhost:300 is ready -> run tests
    */
   webServer: {
-    command: "npm run dev",
+    command: "npm run build:e2e && npm run start:e2e",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
   },
@@ -88,11 +88,4 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });

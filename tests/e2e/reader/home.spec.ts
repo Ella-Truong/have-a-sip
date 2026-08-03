@@ -1,9 +1,11 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Reader Homepage", () => {
-    test("should display hero section", async ({ page }) => {
-        await page.goto("/");
+    test.beforeEach(async ({ page }) => {
+        await page.goto("/")
+    });
 
+    test("should display hero section", async ({ page }) => {
         // Browser metadata
         await expect(page).toHaveTitle(/Have a Sip/i);
 
@@ -31,8 +33,6 @@ test.describe("Reader Homepage", () => {
     });
 
     test("should display latest articles section", async ({ page }) => {
-        await page.goto("/");
-
         await expect(
             page.getByRole("heading",{
                 level: 2,
@@ -48,11 +48,23 @@ test.describe("Reader Homepage", () => {
     });
 
     test("should display topics sidebar", async ({ page }) => {
-        await page.goto("/");
-
         await expect(
             page.getByRole("link", {
                 name: "All Sips",
+                exact: true,
+            })
+        ).toBeVisible();
+
+        await expect(
+            page.getByRole("link", {
+                name: "Backend Engineering",
+                exact: true,
+            })
+        ).toBeVisible();
+
+        await expect(
+            page.getByRole("link", {
+                name: "Women in Tech",
                 exact: true,
             })
         ).toBeVisible();

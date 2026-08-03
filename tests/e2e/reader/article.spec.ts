@@ -131,8 +131,7 @@ test.describe("Reader Article", () => {
 
         await joinConversation(page, cupName);
 
-        const comment =
-            "This is my Playwright E2E comment.";
+        const comment = `Playwright comment ${Date.now()}`;
 
         await page
             .getByPlaceholder(
@@ -145,7 +144,9 @@ test.describe("Reader Article", () => {
         }).click();
 
         await expect(
-            page.getByText(comment)
+            page.getByTestId("comment-content").filter({
+                hasText: comment,
+            })
         ).toBeVisible();
     });
 });

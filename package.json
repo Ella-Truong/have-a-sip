@@ -17,7 +17,9 @@
     "db:migrate": "dotenv -e .env -- prisma migrate dev",
     "db:generate": "dotenv -e .env.test -- prisma generate",
     "db:seed": "dotenv -e .env -- tsx prisma/seed.ts",
-    "db:seed:e2e": "dotenv -e .env -- tsx prisma/seed.e2e.ts"
+    "db:seed:e2e": "dotenv -e .env.e2e -- tsx prisma/seed.e2e.ts",
+    "db:generate:e2e": "dotenv -e .env.e2e -- prisma generate",
+    "db:migrate:e2e": "dotenv -e .env.e2e -- prisma migrate deploy"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",

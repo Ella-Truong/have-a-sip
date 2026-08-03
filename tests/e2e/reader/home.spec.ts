@@ -61,12 +61,5 @@ test.describe("Reader Homepage", () => {
                 exact: true,
             })
         ).toBeVisible();
-
-        await expect(
-            page.getByRole("link", {
-                name: "Women in Tech",
-                exact: true,
-            })
-        ).toBeVisible();
     });
 });

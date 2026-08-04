@@ -33,8 +33,7 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# except the shared E2E environment
-!.env.e2e
+
 
 # vercel
 .vercel

@@ -34,18 +34,14 @@ export const authConfig = {
                     return null;
                 }
 
-                console.log("Login attemp: ", credentials.email)
-
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email as string,
                     }
                 });
 
-                console.log("User found: ", !!user)
-
                 if (!user) {
-                    throw new Error("DEBUG: User not found");
+                    return null;
                 }
 
                 const passwordMatch = await bcrypt.compare(
@@ -53,11 +49,8 @@ export const authConfig = {
                     user.password
                 );
 
-                console.log("Password match:", passwordMatch);
-
-
                 if (!passwordMatch){
-                    throw new Error("DEBUG: Password mismatch");
+                    return null;
                 }
                 
                 console.log("Authentication successful")

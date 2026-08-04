@@ -22,6 +22,9 @@ export async function loginAction(
             error: null,
         };
     } catch (error) {
+        console.log("Error: ", error)
+        console.log("Constructor:", (error as Error)?.constructor?.name)
+        
         if (error instanceof AuthError) {
             switch (error.type) {
                 case "CredentialsSignin":

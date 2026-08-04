@@ -7,8 +7,6 @@ import bcrypt from "bcrypt";
 import { prisma } from "@/lib/prisma";
 
 async function main() {
-    console.log("DATABASE_URL:", process.env.DATABASE_URL);
-    console.log("ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
     // Admin
     const password = await bcrypt.hash(
         process.env.ADMIN_PASSWORD!,

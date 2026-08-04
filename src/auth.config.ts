@@ -30,14 +30,19 @@ export const authConfig = {
 
             async authorize(credentials){
                 if (!credentials?.email || !credentials?.password) {
+                    console.log("Missing credentials")
                     return null;
                 }
+
+                console.log("Login attemp: ", credentials.email)
 
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email as string,
                     }
                 });
+
+                console.log("User found: ", !!user)
 
                 if (!user) {
                     return null;
@@ -48,10 +53,14 @@ export const authConfig = {
                     user.password
                 );
 
+                console.log("Password match:", passwordMatch);
+
+
                 if (!passwordMatch){
                     return null;
                 }
                 
+                console.log("Authentication successful")
                 //when Auth.js knows who logged in
                 //never return password
                 return {

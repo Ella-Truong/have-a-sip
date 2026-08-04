@@ -45,7 +45,7 @@ export const authConfig = {
                 console.log("User found: ", !!user)
 
                 if (!user) {
-                    return null;
+                    throw new Error("DEBUG: User not found");
                 }
 
                 const passwordMatch = await bcrypt.compare(
@@ -57,7 +57,7 @@ export const authConfig = {
 
 
                 if (!passwordMatch){
-                    return null;
+                    throw new Error("DEBUG: Password mismatch");
                 }
                 
                 console.log("Authentication successful")

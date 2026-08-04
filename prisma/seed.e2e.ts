@@ -7,6 +7,8 @@ import bcrypt from "bcrypt";
 import { prisma } from "@/lib/prisma";
 
 async function main() {
+    console.log("DATABASE_URL:", process.env.DATABASE_URL);
+    console.log("ADMIN_EMAIL:", process.env.ADMIN_EMAIL);
     // Admin
     const password = await bcrypt.hash(
         process.env.ADMIN_PASSWORD!,
@@ -17,7 +19,11 @@ async function main() {
         where: {
             email: process.env.ADMIN_EMAIL!,
         },
-        update: {},
+        update: {
+            name: "Ella",
+            password,
+            role: "ADMIN"
+        },
         create: {
             name: "Ella",
             email: process.env.ADMIN_EMAIL!,

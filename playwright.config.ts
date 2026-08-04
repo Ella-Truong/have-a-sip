@@ -1,7 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from "dotenv";
 
-dotenv.config({ path: ".env.e2e" });
+if (!process.env.CI) {
+  const result = dotenv.config({ path: ".env.e2e" });
+
+  if (result.error) {
+    throw result.error;
+  }
+}
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

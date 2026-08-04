@@ -33,7 +33,7 @@ test.describe("Admin Login", () => {
         await page.getByRole("button", {
             name: /Sign In/i
         }).click();
-
+        
         await expect(page).toHaveURL("/admin");
     });
 

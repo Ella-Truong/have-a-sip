@@ -15,6 +15,12 @@ authSetup("authenticate as admin", async ({ page }) => {
         name: /Sign In/i,
     }).click();
 
+    await page.waitForTimeout(2000);
+
+console.log("URL:", page.url());
+
+console.log(await page.context().cookies());
+
     await expect(page).toHaveURL("/admin");
 
     await page.context().storageState({

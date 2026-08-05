@@ -43,15 +43,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 👇 Temporary debug step
-      - name: Verify environment variables
-        run: |
-          echo "DATABASE_URL=$DATABASE_URL"
-          echo "ADMIN_EMAIL=$ADMIN_EMAIL"
-          echo "ADMIN_PASSWORD set: $([ -n "$ADMIN_PASSWORD" ] && echo yes || echo no)"
-          echo "AUTH_SECRET set: $([ -n "$AUTH_SECRET" ] && echo yes || echo no)"
-          test -f .env.e2e && echo ".env.e2e exists" || echo ".env.e2e does NOT exist"
-
       - name: Generate Prisma Client
         run: npm run db:generate:e2e
 
@@ -60,14 +51,6 @@ jobs:
 
       - name: Seed E2E Database
         run: npm run db:seed:e2e
-
-      - name: Verify seeded admin
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y postgresql-client
-          psql "$DATABASE_URL" -c 'SELECT email, role FROM "User";'
-
-      
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps

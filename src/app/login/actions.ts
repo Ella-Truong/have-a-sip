@@ -2,6 +2,7 @@
 
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 export type LoginState = {
     error: string | null;
@@ -22,9 +23,10 @@ export async function loginAction(
             error: null,
         };
     } catch (error) {
-        console.log("Error: ", error)
-        console.log("Constructor:", (error as Error)?.constructor?.name)
-        
+        if (isRedirectError(error)) {
+            throw error
+        }
+
         if (error instanceof AuthError) {
             switch (error.type) {
                 case "CredentialsSignin":

@@ -17,8 +17,6 @@ import bcrypt from "bcrypt";
 //Authentication needs to talk to the database
 import { prisma } from "./lib/prisma";
 
-
-
 // authConfig object contains all authentication rules
 export const authConfig = {
     providers: [
@@ -29,16 +27,22 @@ export const authConfig = {
             },
 
             async authorize(credentials){
+                console.log("DATABASE_URL:", process.env.DATABASE_URL);
+
                 if (!credentials?.email || !credentials?.password) {
                     console.log("Missing credentials")
                     return null;
                 }
+                
+                console.log("Login attempt:", credentials.email);
 
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email as string,
                     }
                 });
+
+                console.log("User found:", !!user);
 
                 if (!user) {
                     return null;
@@ -48,6 +52,8 @@ export const authConfig = {
                     credentials.password as string,
                     user.password
                 );
+
+                console.log("Password match:", passwordMatch);
 
                 if (!passwordMatch){
                     return null;

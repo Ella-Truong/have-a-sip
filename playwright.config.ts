@@ -46,6 +46,9 @@ export default defineConfig({
       : "npm run build:e2e:local && npm run start:e2e:local",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
+
+    stderr: "pipe",
+    stdout: "pipe",
   },
 
   /* Configure projects for major browsers */

@@ -61,6 +61,14 @@ jobs:
       - name: Seed E2E Database
         run: npm run db:seed:e2e
 
+      - name: Verify seeded admin
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+          psql "$DATABASE_URL" -c 'SELECT email, role FROM "User";'
+
+      
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 

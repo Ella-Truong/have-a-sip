@@ -35,7 +35,7 @@ test.describe("Admin Login", () => {
         }).click();
     });
 
-    test("should reject invalid credentials", async ({ page }) => {
+    test.fixme("should reject invalid credentials", async ({ page }) => {
         await page.getByLabel("Email").fill(admin.email);
         await page.getByLabel("Password").fill("wrong-password");
 

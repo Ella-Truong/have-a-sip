@@ -63,6 +63,7 @@ export function JoinConversationForm({
                                     <TooltipTrigger asChild>
                                         <button
                                             type="button"
+                                            aria-label={option.label}
                                             onClick={() => setSipType(option.type)}
                                             className={`flex h-12 w-12 items-center justify-center rounded-full border text-2xl transition-all duration-200 ${
                                                 selected

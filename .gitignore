@@ -33,6 +33,8 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+
+
 # vercel
 .vercel
 
@@ -41,3 +43,11 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

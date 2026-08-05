@@ -17,11 +17,11 @@ export default function FooterBrand() {
                 />
 
                 <div>
-                    <h2
-                        className={`${parisienne.className} text-[2.1rem] leading-none text-[#3F3A37]`}
+                    <span
+                        className={`${parisienne.className} block text-[2.1rem] leading-none text-[#3F3A37]`}
                     >
                         Have a Sip
-                    </h2>
+                    </span>
 
                     <p className="mt-0.5 text-[11px] uppercase tracking-[0.22em] text-[#9A908A]">
                         Slow Engineering Journal

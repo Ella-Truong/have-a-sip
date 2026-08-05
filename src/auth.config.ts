@@ -17,8 +17,6 @@ import bcrypt from "bcrypt";
 //Authentication needs to talk to the database
 import { prisma } from "./lib/prisma";
 
-
-
 // authConfig object contains all authentication rules
 export const authConfig = {
     providers: [
@@ -30,9 +28,10 @@ export const authConfig = {
 
             async authorize(credentials){
                 if (!credentials?.email || !credentials?.password) {
+                    console.log("Missing credentials")
                     return null;
                 }
-
+            
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email as string,
@@ -52,6 +51,7 @@ export const authConfig = {
                     return null;
                 }
                 
+                console.log("Authentication successful")
                 //when Auth.js knows who logged in
                 //never return password
                 return {

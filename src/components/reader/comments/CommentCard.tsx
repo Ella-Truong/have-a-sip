@@ -65,7 +65,7 @@ export function CommentCard({
                 <div className="mt-2 h-px w-12 bg-[#F0E8E2]" />
             </header>
 
-            <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-[#5F5954]">
+            <p data-testid="comment-content" className="mt-2 whitespace-pre-wrap text-sm leading-7 text-[#5F5954]">
                 {comment.content}
             </p>
         </article>

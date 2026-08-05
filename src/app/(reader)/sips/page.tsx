@@ -59,11 +59,11 @@ export default async function SipsPage({
                     </section>
 
                     <aside className="sticky top-28 h-fit space-y-8">
-                        <OnMyDesk/>
                         <TopicsSidebar
                             topics={topics}
                             currentTopic={topic}
                         />
+                        <OnMyDesk/>
                     </aside>
                 </div>
             </div>

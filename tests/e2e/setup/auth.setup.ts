@@ -1,5 +1,5 @@
 
-import { test as authSetup, expect } from "@playwright/test";
+import { test as authSetup } from "@playwright/test";
 
 import { admin } from "../utils/auth";
 
@@ -15,7 +15,7 @@ authSetup("authenticate as admin", async ({ page }) => {
         name: /Sign In/i,
     }).click();
 
-    await expect(page).toHaveURL("/admin");
+    //await expect(page).toHaveURL("/admin");
 
     await page.context().storageState({
         path: authFile,

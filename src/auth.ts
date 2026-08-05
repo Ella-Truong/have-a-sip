@@ -17,20 +17,5 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: "jwt",
   },
-
-  callbacks: {
-    async jwt({ token, user }) {
-      console.log("➡️ jwt callback");
-      console.log("user:", user)
-      return token;
-    },
-
-    async session({ session, token }) {
-      console.log("➡️ session callback");
-      console.log("token", token)
-      return session;
-    },
-  },
-
   ...authConfig,
 });

@@ -13,8 +13,8 @@ jobs:
 
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/have_a_sip_e2e
-      ADMIN_EMAIL: admin@example.com
-      ADMIN_PASSWORD: password2026
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
       AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
 
     services:

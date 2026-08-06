@@ -27,16 +27,17 @@ export const authConfig = {
             },
 
             async authorize(credentials){
-                if (!credentials?.email || !credentials?.password) {
-                    console.log("Missing credentials")
-                    return null;
-                }
+                console.log("DATABASE_URL:", process.env.DATABASE_URL);
+                console.log("Entered email:", credentials.email);
             
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email as string,
                     }
                 });
+
+                console.log("User found:", user?.email);
+
 
                 if (!user) {
                     return null;
@@ -46,6 +47,8 @@ export const authConfig = {
                     credentials.password as string,
                     user.password
                 );
+
+                console.log("Password match:", passwordMatch);
 
                 if (!passwordMatch){
                     return null;

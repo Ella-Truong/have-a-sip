@@ -26,12 +26,7 @@ export const authConfig = {
                 password: {},
             },
 
-            async authorize(credentials){
-                if (!credentials?.email || !credentials?.password) {
-                    console.log("Missing credentials")
-                    return null;
-                }
-            
+            async authorize(credentials){            
                 const user = await prisma.user.findUnique({
                     where: {
                         email: credentials.email as string,

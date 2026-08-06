@@ -33,9 +33,11 @@ test.describe("Admin Login", () => {
         await page.getByRole("button", {
             name: /Sign In/i
         }).click();
+
+        await expect(page).toHaveURL(/\/admin$/);
     });
 
-    test.fixme("should reject invalid credentials", async ({ page }) => {
+    test("should reject invalid credentials", async ({ page }) => {
         await page.getByLabel("Email").fill(admin.email);
         await page.getByLabel("Password").fill("wrong-password");
 

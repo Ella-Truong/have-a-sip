@@ -32,7 +32,6 @@ export default function AdminDashboardPage() {
 
                 {/* Header */}
                 <header className="relative mt-8 mb-14">
-
                     <div className="absolute -top-8 -right-6 hidden opacity-10 md:block">
                         <Leaf
                             size={120}
@@ -60,7 +59,6 @@ export default function AdminDashboardPage() {
                             </h1>
 
                         </div>
-
                     </div>
 
                     <div className="mt-6 flex gap-3">
@@ -72,7 +70,6 @@ export default function AdminDashboardPage() {
                         A quiet place to brew ideas, polish stories,
                         and share thoughtful moments with your readers.
                     </p>
-
                 </header>
 
                 {/* Quick Actions */}
@@ -117,9 +114,7 @@ export default function AdminDashboardPage() {
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-3">
-
                         {/* Articles */}
-
                         <Link
                             href="/admin/articles"
                             className="group rounded-3xl border border-[#ECE3DB] bg-[#FFFDFB] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D7C7B9] hover:shadow-lg"
@@ -143,7 +138,6 @@ export default function AdminDashboardPage() {
 
                             <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#7A5A45]">
                                 Open Collection
-
                                 <ArrowRight
                                     size={16}
                                     className="transition group-hover:translate-x-1"
@@ -156,7 +150,6 @@ export default function AdminDashboardPage() {
                             href="/admin/topics"
                             className="group rounded-3xl border border-[#ECE3DB] bg-[#FFFDFB] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#C5D7BF] hover:shadow-lg"
                         >
-
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EAF2E7]">
                                 <Tags
                                     size={26}

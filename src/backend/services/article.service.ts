@@ -30,8 +30,8 @@ export class ArticleService {
     //property declaration
     private readonly articleRepository: ArticleRepository;
 
-    constructor() {
-        this.articleRepository = new ArticleRepository();
+    constructor( articleRepository = new ArticleRepository()) {
+        this.articleRepository = articleRepository;
     }
     
     /**

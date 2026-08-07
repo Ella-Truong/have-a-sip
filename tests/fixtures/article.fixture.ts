@@ -1,4 +1,5 @@
-import { CreateArticleInput } from "@/backend/types/article";
+import { CreateArticleInput, CreateArticleData } from "@/backend/types/article";
+
 
 export const prismaArticleFixture: CreateArticleInput = {
     title: "Learning Prisma",
@@ -8,6 +9,42 @@ export const prismaArticleFixture: CreateArticleInput = {
     topicId: "", //override this inside each test
     published: true
 }
+
+export const createArticleDataFixture: CreateArticleData = {
+    title: "Learning Prisma",
+    slug: "learning-prisma",
+    excerpt: "A beginner's guide to Prisma ORM",
+    content: "Prisma is a modern ORM for Node.js and TypeScript. It provides type-safe database access and excellent developer experience.",
+    coverImage: null,
+    topicId: "topic-1",
+    readingTime: 1,
+    published: true,
+};
+
+export const articleResultFixture = {
+    id: "article-1",
+    title: "Learning Prisma",
+    slug: "learning-prisma",
+    excerpt: "A beginner's guide to Prisma ORM",
+    content:
+        "Prisma is a modern ORM for Node.js and TypeScript. It provides type-safe database access and excellent developer experience.",
+    coverImage: null,
+    topicId: "topic-1",
+    readingTime: 1,
+    published: true,
+    publishedAt: new Date(),
+    createdAt: new Date(),
+    updatedAt: new Date(),
+};
+
+export const articleDetailFixture = {
+    ...articleResultFixture,
+    topic: {
+        id: "topic-1",
+        name: "Backend",
+        slug: "backend",
+    },
+};
 
 export const redisArticleFixture = {
     title: "Learning Redis",
@@ -26,3 +63,21 @@ export const dockerArticleFixture = {
     readingTime: 2,
     published: true,
 }
+
+export const articleSummaryFixture = {
+    id: "article-1",
+    title: "Learning Prisma",
+    slug: "learning-prisma",
+    excerpt: "A beginner's guide to Prisma ORM",
+    coverImage: null,
+    readingTime: 1,
+    published: true,
+    publishedAt: new Date(),
+    updatedAt: new Date(),
+    topicId: "topic-1",
+    topic: {
+        id: "topic-1",
+        name: "Backend",
+        slug: "backend",
+    },
+};

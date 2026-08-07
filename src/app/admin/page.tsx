@@ -1,4 +1,6 @@
 import Link from "next/link";
+import LogoutButton from "@/components/admin/LogoutButton";
+
 import {
     ArrowRight,
     FileText,
@@ -13,23 +15,23 @@ import {
 export default function AdminDashboardPage() {
     return (
         <main className="min-h-screen bg-[#F8F4EF] px-6 py-12">
-            <div className="mx-auto max-w-6xl">
+            <div className="mx-auto max-w-6xl px-8 py-10">
+                <div className="flex items-center justify-between">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center gap-2 text-[#71866A] transition hover:text-[#5F7455]"
+                    >
+                        <Coffee size={18} strokeWidth={1.8} />
 
-                {/* Brand */}
-                <Link
-                    href="/"
-                    className="inline-flex items-center gap-2 text-[#71866A] transition hover:text-[#5F7455]"
-                >
-                    <Coffee size={18} strokeWidth={1.8} />
-
-                    <span className="font-medium tracking-wide">
-                        Have a Sip
-                    </span>
-                </Link>
+                        <span className="font-medium tracking-wide">
+                            Have a Sip
+                        </span>
+                    </Link>
+                    <LogoutButton/>
+                </div>
 
                 {/* Header */}
                 <header className="relative mt-8 mb-14">
-
                     <div className="absolute -top-8 -right-6 hidden opacity-10 md:block">
                         <Leaf
                             size={120}
@@ -38,7 +40,6 @@ export default function AdminDashboardPage() {
                     </div>
 
                     <div className="flex items-center gap-5">
-
                         <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#EADCCF] shadow-sm">
                             <NotebookPen
                                 size={30}
@@ -48,7 +49,6 @@ export default function AdminDashboardPage() {
                         </div>
 
                         <div>
-
                             <p className="flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[#71866A]">
                                 <Leaf size={12} />
                                 Writing Space
@@ -59,7 +59,6 @@ export default function AdminDashboardPage() {
                             </h1>
 
                         </div>
-
                     </div>
 
                     <div className="mt-6 flex gap-3">
@@ -71,13 +70,10 @@ export default function AdminDashboardPage() {
                         A quiet place to brew ideas, polish stories,
                         and share thoughtful moments with your readers.
                     </p>
-
                 </header>
 
                 {/* Quick Actions */}
-
                 <section className="mb-14">
-
                     <div className="mb-5 flex items-center gap-2">
                         <div className="h-px w-8 bg-[#C8D8C1]" />
 
@@ -105,13 +101,10 @@ export default function AdminDashboardPage() {
                         </Link>
 
                     </div>
-
                 </section>
 
                 {/* Collections */}
-
                 <section>
-
                     <div className="mb-5 flex items-center gap-2">
                         <div className="h-px w-8 bg-[#D7C7B9]" />
 
@@ -121,9 +114,7 @@ export default function AdminDashboardPage() {
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-3">
-
                         {/* Articles */}
-
                         <Link
                             href="/admin/articles"
                             className="group rounded-3xl border border-[#ECE3DB] bg-[#FFFDFB] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D7C7B9] hover:shadow-lg"
@@ -147,22 +138,18 @@ export default function AdminDashboardPage() {
 
                             <div className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#7A5A45]">
                                 Open Collection
-
                                 <ArrowRight
                                     size={16}
                                     className="transition group-hover:translate-x-1"
                                 />
                             </div>
-
                         </Link>
 
                         {/* Topics */}
-
                         <Link
                             href="/admin/topics"
                             className="group rounded-3xl border border-[#ECE3DB] bg-[#FFFDFB] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#C5D7BF] hover:shadow-lg"
                         >
-
                             <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EAF2E7]">
                                 <Tags
                                     size={26}
@@ -187,11 +174,9 @@ export default function AdminDashboardPage() {
                                     className="transition group-hover:translate-x-1"
                                 />
                             </div>
-
                         </Link>
 
                         {/* Comments */}
-
                         <Link
                             href="/admin/comments"
                             className="group rounded-3xl border border-[#ECE3DB] bg-[#FFFDFB] p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#D7C7B9] hover:shadow-lg"
@@ -221,13 +206,9 @@ export default function AdminDashboardPage() {
                                     className="transition group-hover:translate-x-1"
                                 />
                             </div>
-
                         </Link>
-
                     </div>
-
                 </section>
-
             </div>
         </main>
     );

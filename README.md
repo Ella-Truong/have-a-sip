@@ -2,7 +2,10 @@
 
 **Have a Sip** is a personal engineering blog and publishing platform where I share what I learn about software engineering, backend development, system design, and my journey as a developer.
 
-🌐 **Live:** https://haveasip.tech
+🌐 **Live:** https://www.haveasip.tech
+
+> **Note:** The articles currently published on Have a Sip are sample content created for demonstration purposes and are not my actual published writings.
+
 
 The goal is to create a calm, distraction-free reading experience. Readers can simply read and discuss articles, while I manage content and view analytics through a private admin dashboard.
 

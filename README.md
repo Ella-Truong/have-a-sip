@@ -2,6 +2,8 @@
 
 **Have a Sip** is a personal engineering blog and publishing platform where I share what I learn about software engineering, backend development, system design, and my journey as a developer.
 
+🌐 **Live:** https://haveasip.tech
+
 The goal is to create a calm, distraction-free reading experience. Readers can simply read and discuss articles, while I manage content and view analytics through a private admin dashboard.
 
 ---
@@ -89,13 +91,15 @@ The focus is on learning, sharing, and discussion—not social engagement.
 
 - Zod
 
-### Charts & Analytics
+### Testing
 
-- Recharts
+- Jest
+- Playwright
 
 ### Deployment
 
 - Vercel
+- Custom domain: `haveasip.tech`
 
 ---
 
@@ -125,15 +129,3 @@ src/
 ├── constants/
 └── prisma/
 ```
-
-## Engineering Notes
-
-While building Have a Sip, I documented the architectural decisions and concepts I learned, including:
-
-- Database environments (development, testing, production)
-- Prisma migrations
-- Integration testing strategy
-- Deployment workflow
-
-
-See the `docs/` folder for detailed notes.

@@ -21,6 +21,7 @@ describe("ArticleService", () => {
     let repository: jest.Mocked<ArticleRepository>;
 
     beforeEach(() => {
+        //create fake repository
         repository = {
             findArticles: jest.fn(),
             findArticleBySlug: jest.fn(),
